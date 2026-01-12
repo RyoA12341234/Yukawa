@@ -1,0 +1,632 @@
+@charset "UTF-8";
+
+/* ==========================================
+   湯川寛之オフィシャルサイト - 枝野サイト構造準拠
+   国民民主党カラー: 青 #0051A5 / 黄色 #FFD700
+========================================== */
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.c_b {
+  clear: both;
+}
+
+/* ==========================================
+   ヘッダー部
+========================================== */
+#header {
+  width: 100%;
+}
+
+.header_wrap {
+  width: 100%;
+  background: linear-gradient(180deg, #0051A5 0%, #003d7a 100%);
+  position: relative;
+}
+
+.header_inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* 左上の国民民主党ロゴ */
+.party_logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  width: 180px;
+}
+
+.party_logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* ナビゲーション */
+.navi_wrap {
+  width: 100%;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.navi_wrap ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navi_wrap ul li {
+  flex: 1;
+}
+
+.navi_wrap ul li a {
+  display: block;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.navi_wrap ul li a:hover {
+  background: #FFD700;
+  color: #0051A5;
+}
+
+.navi_wrap ul li.navi_wrap_f a {
+  background: rgba(255, 215, 0, 0.2);
+}
+
+/* メインヘッダー画像 */
+.header_name {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  position: relative;
+  background: url('https://sspark.genspark.ai/cfimages?u1=cB0zz8gtDG9FMIXns4n%2FbgEnJIuGTYStAHvo%2FqE0pc91u%2BEl5kedHPzJVeAzCsTolXavMtW%2B7I9BDRN2QCnGwhW3vDZjL3Sxbph%2FpbwiyBTx9Lw6DrCOoAcCBuxDz6IDEHEgtiqljVyocprcFE2Cin7iG4u9IPzpjQBUPNY%3D&u2=HDPb4gDiy6lFlvjH&width=2560') center center no-repeat;
+  background-size: cover;
+  padding: 120px 40px;
+  border-radius: 8px;
+}
+
+.header_name_text {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.name_party {
+  font-size: 20px;
+  color: #FFD700;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.name_main {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.name_ruby {
+  font-size: 24px;
+  color: #FFD700;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.name_catch {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+/* TOPICSエリア */
+.header_topics {
+  width: 100%;
+  background: #f5f5f5;
+  border-top: 3px solid #FFD700;
+}
+
+.header_topics_inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header_topics_inner img {
+  width: 100px;
+}
+
+.header_topics p {
+  font-size: 14px;
+  color: #333;
+}
+
+.header_topics span {
+  margin-right: 20px;
+}
+
+.header_topics a {
+  color: #0051A5;
+  font-weight: bold;
+}
+
+.header_topics a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   メインコンテンツ
+========================================== */
+#contents {
+  width: 100%;
+}
+
+.section_wrap {
+  width: 100%;
+  padding: 80px 20px;
+}
+
+.section_wrap.gray_bg {
+  background: #f5f5f5;
+}
+
+.section_inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section_title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #0051A5;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #FFD700;
+}
+
+/* マニフェスト（5つの政策） */
+.manifesto_list {
+  width: 100%;
+}
+
+.manifesto_item {
+  width: 100%;
+  margin-bottom: 60px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.manifesto_item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.manifesto_item img {
+  width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.manifesto_text {
+  width: 55%;
+}
+
+.manifesto_text h3 {
+  font-size: 24px;
+  color: #0051A5;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.manifesto_text p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.manifesto_text ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.manifesto_text ul li {
+  padding: 10px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #555;
+}
+
+.manifesto_text ul li:before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+/* レポート */
+.report_content {
+  text-align: center;
+}
+
+.report_text {
+  font-size: 18px;
+  margin-bottom: 40px;
+  line-height: 2;
+}
+
+.report_image img {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* プロフィール */
+.profile_content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile_text h3 {
+  font-size: 28px;
+  color: #0051A5;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #FFD700;
+}
+
+.profile_text p {
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+.profile_detail {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.profile_detail dl {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.profile_detail dt {
+  font-weight: bold;
+  color: #0051A5;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.profile_detail dd {
+  line-height: 1.6;
+}
+
+/* 活動報告 */
+.activity_content {
+  text-align: center;
+}
+
+.activity_image {
+  margin-bottom: 50px;
+}
+
+.activity_image img {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.activity_stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+
+.stat_item {
+  text-align: center;
+}
+
+.stat_number {
+  font-size: 48px;
+  font-weight: bold;
+  color: #0051A5;
+  margin-bottom: 10px;
+}
+
+.stat_label {
+  font-size: 16px;
+  color: #555;
+}
+
+.activity_list {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.activity_list h3 {
+  font-size: 24px;
+  color: #0051A5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.activity_list ul {
+  list-style: none;
+}
+
+.activity_list ul li {
+  padding: 15px 0;
+  padding-left: 30px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.activity_list ul li:before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-size: 14px;
+}
+
+/* プロジェクト */
+.projects_image {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.projects_image img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.projects_list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.project_item {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #0051A5;
+}
+
+.project_item h3 {
+  font-size: 18px;
+  color: #0051A5;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.project_num {
+  display: inline-block;
+  background: #FFD700;
+  color: #0051A5;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.project_item ul {
+  list-style: none;
+}
+
+.project_item ul li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  color: #555;
+  font-size: 14px;
+}
+
+.project_item ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* 応援しよう */
+.support_content {
+  text-align: center;
+}
+
+.support_text {
+  font-size: 18px;
+  margin-bottom: 50px;
+  line-height: 2;
+}
+
+.contact_info {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact_item {
+  flex: 1;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact_item h4 {
+  font-size: 20px;
+  color: #0051A5;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #FFD700;
+}
+
+.contact_item p {
+  color: #555;
+}
+
+/* ==========================================
+   フッター
+========================================== */
+#footer {
+  width: 100%;
+  background: #0051A5;
+  padding: 40px 20px;
+}
+
+.footer_inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer_copy {
+  color: #FFD700;
+  font-size: 14px;
+}
+
+/* ==========================================
+   レスポンシブ
+========================================== */
+@media screen and (max-width: 768px) {
+  .party_logo {
+    width: 120px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .navi_wrap ul {
+    flex-wrap: wrap;
+  }
+
+  .navi_wrap ul li {
+    flex-basis: calc(50% - 5px);
+  }
+
+  .navi_wrap ul li a {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+
+  .header_name {
+    padding: 80px 20px;
+  }
+
+  .name_main {
+    font-size: 36px;
+  }
+
+  .name_ruby {
+    font-size: 18px;
+  }
+
+  .name_catch {
+    font-size: 16px;
+  }
+
+  .section_wrap {
+    padding: 50px 15px;
+  }
+
+  .section_title {
+    font-size: 28px;
+  }
+
+  .manifesto_item {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  .manifesto_item img,
+  .manifesto_text {
+    width: 100%;
+  }
+
+  .profile_detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .activity_stats {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .projects_list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact_info {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+/* スマホ用（非表示） */
+.sp {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .pc {
+    display: none;
+  }
+  
+  .sp {
+    display: block;
+  }
+}
