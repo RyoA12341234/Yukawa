@@ -1,7 +1,8 @@
-/* カスタムスタイル */
+/* 枝野幸男サイト風のカスタムスタイル */
+
 body {
   font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 /* スムーススクロール */
@@ -9,30 +10,80 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ナビゲーションホバーエフェクト */
+/* ナビゲーションスタイル */
 nav a {
-  position: relative;
+  display: inline-block;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
 }
 
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #2563eb;
-  transition: width 0.3s ease;
+nav li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-nav a:hover::after {
-  width: 100%;
+/* 見出しの下線スタイル */
+h2.inline-block {
+  display: block;
 }
 
 /* カードホバーエフェクト */
 .hover\:shadow-md {
   transition: all 0.3s ease;
+}
+
+.hover\:bg-blue-50 {
+  transition: all 0.3s ease;
+}
+
+/* ボーダーアニメーション */
+.border-l-8 {
+  transition: all 0.3s ease;
+}
+
+.border-l-8:hover {
+  border-left-width: 12px;
+}
+
+/* トピックスエリアのスタイル */
+.bg-yellow-50 {
+  background-color: #fffbeb;
+}
+
+/* ヘッダーメインビジュアル */
+.header-main {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* グリッドアイテムの高さ統一 */
+.grid > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+  
+  nav li {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+  }
+  
+  .header-main {
+    min-height: 300px;
+    padding: 40px 20px;
+  }
 }
 
 /* アニメーション */
@@ -47,6 +98,6 @@ nav a:hover::after {
   }
 }
 
-.fade-in {
+section {
   animation: fadeIn 0.6s ease-out;
 }
