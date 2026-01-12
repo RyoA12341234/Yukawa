@@ -8,7 +8,10 @@ export const renderer = jsxRenderer(({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>湯川寛之オフィシャルサイト - すべての人が輝く須磨区へ</title>
         <meta name="Description" content="湯川寛之の政策を発信するサイト。神戸市須磨区の未来のために、5つの基本政策と10の重点プロジェクトを掲げています。" />
-        <link type="text/css" href="/static/edano-style.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+        <link type="text/css" href="/static/modern-dpfp.css" rel="stylesheet" />
       </head>
       <body>{children}</body>
     </html>
