@@ -10,7 +10,7 @@ app.get('/', (c) => {
   return c.render(
     <div>
       {/* ヒーローセクション - 強化版 */}
-      <section class="hero-section">
+      <section class="hero-section" style="background-image: url('https://sspark.genspark.ai/cfimages?u1=cB0zz8gtDG9FMIXns4n%2FbgEnJIuGTYStAHvo%2FqE0pc91u%2BEl5kedHPzJVeAzCsTolXavMtW%2B7I9BDRN2QCnGwhW3vDZjL3Sxbph%2FpbwiyBTx9Lw6DrCOoAcCBuxDz6IDEHEgtiqljVyocprcFE2Cin7iG4u9IPzpjQBUPNY%3D&u2=HDPb4gDiy6lFlvjH&width=2560'); background-size: cover; background-position: center;">
         <div class="hero-overlay">
           <div class="container">
             <div class="hero-content">
@@ -44,6 +44,9 @@ app.get('/', (c) => {
       {/* 想い・メッセージセクション */}
       <section id="about" class="message-section">
         <div class="container">
+          <div class="section-image" style="margin-bottom: 40px; text-align: center;">
+            <img src="https://sspark.genspark.ai/cfimages?u1=8nJfHrePbX4D9btm45zpb7mD2iPQIjiKRV9f7v%2F823BfKFh5ry4Y%2B5xiz5esNVlLSUh1vfm%2BmljtZ3dFCqiagFoHkM7agOImTqI5KyEi8%2BKAjiixFWApJqdZwG1pV9DYXDBViYQs5qXemLuU77Bq06TPs1w0kx6bvFOPT4kjvAw%3D&u2=RlSqCKxd7ljZyvMf&width=2560" alt="地域との対話" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+          </div>
           <div class="section-header">
             <span class="section-label">MESSAGE</span>
             <h2 class="section-title">私の想い</h2>
@@ -87,6 +90,9 @@ app.get('/', (c) => {
       {/* 基本理念セクション */}
       <section id="vision" class="vision-section">
         <div class="container">
+          <div class="section-image" style="margin-bottom: 40px; text-align: center;">
+            <img src="https://sspark.genspark.ai/cfimages?u1=zKXeu3qBTKbiZPM6v50RcUYxecQ0NgxTG4KdIJZr1j5c98xkTbTWMbazpBVmnkSP1UikeroWV1%2Bzc96G6ZvSJJkN3IQjN6Q4%2BwqIrLxm6g5BA1gy5fcoYxmV5jJJethrIYkcR%2FghKDpg22A%3D&u2=Vtyh0wzectlZ8gkx&width=2560" alt="須磨区の風景" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+          </div>
           <div class="section-header">
             <span class="section-label">VISION</span>
             <h2 class="section-title">基本理念</h2>
@@ -132,6 +138,9 @@ app.get('/', (c) => {
           </div>
           <div class="policies-grid">
             <div class="policy-card">
+              <div class="policy-image" style="margin-bottom: 20px;">
+                <img src="https://sspark.genspark.ai/cfimages?u1=N2%2FBG8foj40VMCpVXbN13Izhx6tF0JO39fbOBbDU2kO0tdl2yVsuC2KRMT464yzPsy4f38sQEL6i7NzkzRxDCzF%2BXW1ta4ij46KT2CvPncBuxla81lWCbZUkaEfgpJsrXHt4syEMMzcEfb8vMa6fjdztBis8hFG2cK3PFtWv&u2=pD0mg2l7Hoks9R4k&width=2560" alt="防災・安全" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
+              </div>
               <div class="policy-number">01</div>
               <h3 class="policy-title">安全・安心のまちづくり</h3>
               <p class="policy-summary">
@@ -149,6 +158,9 @@ app.get('/', (c) => {
             </div>
 
             <div class="policy-card">
+              <div class="policy-image" style="margin-bottom: 20px;">
+                <img src="https://sspark.genspark.ai/cfimages?u1=xhEDzqf10xiZm%2F78cQMcmqxknaWELlyupw%2F7d1wYNjekCGz6vzUwPc0Ya3tp7PsEW78uX93GDjwS78VKaDUCifCOpERedIh925ILouu7%2FD4YvG5%2Be5uxVAR%2Bi6BpIb2AtnYRrZ7BrUhIFC959cijdwyYiU1Eby6QIw8VHyTDu7Y0&u2=727LtRb8fdEJ3kzp&width=2560" alt="子どもの教育" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
+              </div>
               <div class="policy-number">02</div>
               <h3 class="policy-title">子ども・若者が健やかに育つまちづくり</h3>
               <p class="policy-summary">
@@ -167,6 +179,9 @@ app.get('/', (c) => {
             </div>
 
             <div class="policy-card">
+              <div class="policy-image" style="margin-bottom: 20px;">
+                <img src="https://sspark.genspark.ai/cfimages?u1=UsJq55q0ikgf3JcsMA9A0P4zdcFw8e70l%2ByEtE3yj7deyaNAFxYEbYTK3YxbOJg%2Fd3vxg0KU124ls0SWjNn2oQeeSuXCko0IsfJUjS102jNXhNapCn96CTNHj07KYSDrfrFFfXlheZQsspku%2FSvkx2j4pDf2cy05TprYqDaSwrYZrpzKN%2BIEKIFfNx5zSVc3TTiMpMvDgXeX7NGuvwOmf2ugS4OX%2FPM%2FnuywW8E6vprk%2BRAP8ZjFxSA39%2FyWUUv3MIWWaMnxvA%3D%3D&u2=5E9Mt9e1f%2FImRwon&width=2560" alt="高齢者福祉" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
+              </div>
               <div class="policy-number">03</div>
               <h3 class="policy-title">健やかでいきいきと暮らせるまちづくり</h3>
               <p class="policy-summary">
@@ -185,6 +200,9 @@ app.get('/', (c) => {
             </div>
 
             <div class="policy-card">
+              <div class="policy-image" style="margin-bottom: 20px;">
+                <img src="https://sspark.genspark.ai/cfimages?u1=RHkWsjesBhndAuXHXIHUt1KZk3tuE3WghFfFxt76rsaPzGSDHxtk57oEU9kx5NO1F%2F8GGk6p67uKBTf9bFZCKB%2Bx0sxzW1G4XJ4UQtsRH0xYJCeGbvQXsLYjDBrgp%2Ft%2FcY8nTtd1PZwZiPeCeje%2Bf0Q%3D&u2=S5ZwKLsIeAWgXVnF&width=2560" alt="自然とアウトドア" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
+              </div>
               <div class="policy-number">04</div>
               <h3 class="policy-title">自然・歴史・文化・スポーツを楽しめるまちづくり</h3>
               <p class="policy-summary">
@@ -203,6 +221,9 @@ app.get('/', (c) => {
             </div>
 
             <div class="policy-card">
+              <div class="policy-image" style="margin-bottom: 20px;">
+                <img src="https://sspark.genspark.ai/cfimages?u1=M2Q8YOn%2FDlXgnVPp86XTBgo%2FyP1%2FMMoy0yjx7wOgpmwhb6IwP4I%2BBav04ttYsAH8i24WnYOqN%2FKOrTDL4auoMz4EUHhDvmM9krmj6qqDT%2BMr6kRP5jPTtjitDfsckzGg%2FmSGgI1f7cruRBn56Pz7kQsK%2F19R5Wxy9xA0ThIqJ7kcwFWBCqKaHP6VipcHzxSofNdAxJ2A%2BOyXtyEa%2BEFYBoEo&u2=DUdBb%2F2OMH5xTGve&width=2560" alt="都市開発" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" />
+              </div>
               <div class="policy-number">05</div>
               <h3 class="policy-title">交流・参画で活気あふれるまちづくり</h3>
               <p class="policy-summary">
@@ -226,6 +247,9 @@ app.get('/', (c) => {
       {/* 10の重点プロジェクト */}
       <section id="projects" class="projects-section">
         <div class="container">
+          <div class="section-image" style="margin-bottom: 40px; text-align: center;">
+            <img src="https://sspark.genspark.ai/cfimages?u1=E6n2pebD0GKJUcIOqrtjvot3O6n%2F0QMScNnnN%2FSNDqbnwTqVFTnD2R%2BjXbo7wjgmY89BEbld1a5KHehVo3o%3D&u2=8c2C5er1kGJXtSs%2B&width=2560" alt="須磨海浜公園" style="width: 100%; max-width: 1000px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+          </div>
           <div class="section-header">
             <span class="section-label">PROJECTS</span>
             <h2 class="section-title">10の重点プロジェクト</h2>
@@ -314,6 +338,9 @@ app.get('/', (c) => {
       {/* 活動実績セクション */}
       <section id="activity" class="activity-section">
         <div class="container">
+          <div class="section-image" style="margin-bottom: 40px; text-align: center;">
+            <img src="https://sspark.genspark.ai/cfimages?u1=3Q7QQgjeI9VFAbFeGxrzy%2BfRUD9SvrfhHisHbPSO%2FFU2P2R2Z9LI7i723CugVClYYI0xEl2p8rKnsR9EeEDERVspr25xNX4YC1dxiTnRRAUCCgtuyxR5g%2BFVcwPCemhtR3bxOdWyKcVEHbwKUh%2BZrqI%3D&u2=0WHgeX76Q3AP%2B0v%2B&width=2560" alt="地域活動" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
+          </div>
           <div class="section-header">
             <span class="section-label">ACTIVITY</span>
             <h2 class="section-title">活動実績</h2>
