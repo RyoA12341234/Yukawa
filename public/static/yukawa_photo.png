@@ -1,0 +1,6 @@
+<svg width="300" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="400" fill="#e0e0e0"/>
+  <circle cx="150" cy="150" r="80" fill="#bbb"/>
+  <rect x="70" y="220" width="160" height="180" fill="#999"/>
+  <text x="150" y="390" font-family="Arial, sans-serif" font-size="20" fill="#333" text-anchor="middle">湯川寛之</text>
+</svg>

@@ -4,14 +4,13 @@ export const renderer = jsxRenderer(({ children }) => {
   return (
     <html lang="ja">
       <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>湯川寛之 - 神戸市須磨区の未来のために</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-        <link href="/static/style.css" rel="stylesheet" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=640, user-scalable=yes" />
+        <title>湯川寛之オフィシャルサイト　神戸市須磨区</title>
+        <meta name="Description" content="湯川寛之の政策を発信するサイト。基本理念や須磨区の10の重点プロジェクトが掲載されている。" />
+        <link type="text/css" href="/static/default.css" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body class="drawer drawer--top">{children}</body>
     </html>
   )
 })
