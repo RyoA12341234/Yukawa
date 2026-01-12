@@ -1,0 +1,42 @@
+{
+  "noticeBar": "公式サイト｜最新情報を発信中",
+  "heroTitle": "湯川寛之",
+  "heroSub": "地域の声を、政策に。",
+  "heroPills": ["安心・安全", "子育て", "高齢者支援", "魅力づくり", "つながり"],
+  "heroMetaLines": [
+    "公式サイト（Netlify運用）",
+    "写真・投稿は管理画面から更新できます"
+  ],
+  "videos": [
+    { "title": "政策ダイジェスト", "desc": "重点施策を短く解説します。", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+    { "title": "活動報告", "desc": "現場の声をお届けします。", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+    { "title": "メッセージ", "desc": "想いとビジョン。", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
+  ],
+  "news": [
+    { "date": "2026-01-12", "category": "お知らせ", "title": "公式サイトを公開しました" },
+    { "date": "2026-01-10", "category": "イベント", "title": "地域意見交換会を開催します" },
+    { "date": "2026-01-08", "category": "メディア", "title": "取材掲載のお知らせ" }
+  ],
+  "activity": [
+    { "title": "街頭でのご挨拶", "desc": "皆さまからの声を伺いました。", "image": "/images/hero.jpg" },
+    { "title": "地域清掃活動", "desc": "安全で快適なまちへ。", "image": "/images/hero.jpg" },
+    { "title": "意見交換会", "desc": "子育て・防災の課題を共有。", "image": "/images/hero.jpg" }
+  ],
+  "iconNav": [
+    { "label": "政策", "href": "#policies" },
+    { "label": "お知らせ", "href": "#news" },
+    { "label": "活動報告", "href": "#activity" },
+    { "label": "事務所案内", "href": "#office" },
+    { "label": "お問い合わせ", "href": "#contact" }
+  ],
+  "office": {
+    "tel": "000-0000-0000",
+    "addr": "（住所を入力してください）",
+    "hours": "平日 10:00-18:00"
+  },
+  "sns": [
+    { "label": "X", "url": "https://example.com" },
+    { "label": "YouTube", "url": "https://example.com" },
+    { "label": "Instagram", "url": "https://example.com" }
+  ]
+}

@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "site"
+    label: "サイト設定"
+    files:
+      - name: "site_json"
+        label: "トップ/共通設定（site.json）"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "告知バー", name: "noticeBar", widget: "string" }
+          - { label: "名前（見出し）", name: "heroTitle", widget: "string" }
+          - { label: "サブコピー", name: "heroSub", widget: "string" }
+          - label: "強調ピル（5つ程度）"
+            name: "heroPills"
+            widget: "list"
+          - label: "メタ情報（複数行）"
+            name: "heroMetaLines"
+            widget: "list"
+          - label: "動画（最大3本）"
+            name: "videos"
+            widget: "list"
+            fields:
+              - { label: "タイトル", name: "title", widget: "string" }
+              - { label: "説明", name: "desc", widget: "string" }
+              - { label: "YouTube URL", name: "url", widget: "string" }
+          - label: "お知らせ（簡易）"
+            name: "news"
+            widget: "list"
+            fields:
+              - { label: "日付", name: "date", widget: "string" }
+              - { label: "カテゴリ", name: "category", widget: "string" }
+              - { label: "タイトル", name: "title", widget: "string" }
+          - label: "活動報告（簡易）"
+            name: "activity"
+            widget: "list"
+            fields:
+              - { label: "タイトル", name: "title", widget: "string" }
+              - { label: "説明", name: "desc", widget: "string" }
+              - { label: "画像", name: "image", widget: "image", required: false }
+          - label: "アイコン導線"
+            name: "iconNav"
+            widget: "list"
+            fields:
+              - { label: "表示名", name: "label", widget: "string" }
+              - { label: "リンク", name: "href", widget: "string" }
+          - label: "事務所情報"
+            name: "office"
+            widget: "object"
+            fields:
+              - { label: "電話", name: "tel", widget: "string" }
+              - { label: "住所", name: "addr", widget: "string" }
+              - { label: "受付時間", name: "hours", widget: "string" }
+          - label: "SNS"
+            name: "sns"
+            widget: "list"
+            fields:
+              - { label: "ラベル", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+  - name: "policies"
+    label: "政策カード"
+    files:
+      - name: "policies_json"
+        label: "政策（policies.json）"
+        file: "content/policies.json"
+        format: "json"
+        fields:
+          - label: "政策カード（5つ）"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "タグ（POLICY 01等）", name: "tag", widget: "string" }
+              - { label: "見出し", name: "title", widget: "string" }
+              - label: "箇条書き"
+                name: "bullets"
+                widget: "list"
+          - { label: "出典注記", name: "sourceNote", widget: "string", required: false }
+          - { label: "出典URL", name: "sourceUrl", widget: "string", required: false }
