@@ -1,21 +1,135 @@
-```txt
+# 湯川寛之 政治家Webサイト
+
+## 概要
+神戸市須磨区の政治家・湯川寛之氏の公式Webサイトです。枝野幸男氏のサイトデザインを参考に、須磨区の地域課題に焦点を当てた政策を紹介しています。
+
+## 公開URL
+- **開発環境**: https://3000-im434aiostbhojsdczwki-c81df28e.sandbox.novita.ai
+
+## プロジェクト概要
+- **名前**: 湯川寛之（ゆかわ ひろゆき）
+- **活動エリア**: 神戸市須磨区
+- **基本理念**: 人間中心の経済
+
+## 主な機能
+
+### 実装済みコンテンツ
+1. **プロフィールセクション**
+   - 湯川寛之氏の経歴と理念
+
+2. **基本理念セクション**
+   - 人間中心の経済についての説明
+
+3. **5つの基本政策**
+   - 安全・安心のまちづくり
+   - 子ども・若者が健やかに育つまちづくり
+   - 健やかでいきいきと暮らせるまちづくり
+   - 自然・歴史・文化・スポーツを楽しめるまちづくり
+   - 交流・参画で活気あふれるまちづくり
+
+4. **10の重点プロジェクト**
+   - 地域のつながり・防犯プロジェクト
+   - 災害に強いまちづくりプロジェクト
+   - 子どもの笑顔をはぐくむプロジェクト
+   - 地域で支えあう福祉プロジェクト
+   - 歴史・文化を次世代へつなぐプロジェクト
+   - 魅力・活気あふれるまちづくりプロジェクト
+   - 参画と協働によるまちづくりプロジェクト
+   - 海と山を活かしたまちづくりプロジェクト
+   - 名谷リノベーションプロジェクト
+   - 須磨海浜公園・海辺のリノベーションプロジェクト
+
+5. **お問い合わせセクション**
+   - 連絡先情報（準備中）
+
+## 技術スタック
+- **フレームワーク**: Hono (Cloudflare Pages)
+- **フロントエンド**: Tailwind CSS, Font Awesome
+- **ビルドツール**: Vite
+- **プロセス管理**: PM2
+- **デプロイ**: Cloudflare Pages対応
+
+## データアーキテクチャ
+- **静的サイト**: サーバーサイドレンダリング (JSX)
+- **スタイリング**: Tailwind CSS + カスタムCSS
+- **アイコン**: Font Awesome 6.4.0
+
+## ローカル開発
+
+### 必要な環境
+- Node.js 18以上
+- npm
+
+### セットアップ
+```bash
+# 依存関係のインストール
 npm install
-npm run dev
+
+# ビルド
+npm run build
+
+# 開発サーバー起動（PM2使用）
+pm2 start ecosystem.config.cjs
+
+# サーバー確認
+curl http://localhost:3000
+
+# PM2ログ確認
+pm2 logs webapp --nostream
 ```
 
-```txt
-npm run deploy
+### 便利なスクリプト
+```bash
+# ポートクリーンアップ
+npm run clean-port
+
+# サーバーテスト
+npm test
+
+# Gitコミット
+npm run git:commit "コミットメッセージ"
 ```
 
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
+## デプロイメント
+- **プラットフォーム**: Cloudflare Pages
+- **ステータス**: ✅ ローカル開発環境で動作中
+- **最終更新**: 2024年
 
-```txt
-npm run cf-typegen
+## プロジェクト構造
+```
+webapp/
+├── src/
+│   ├── index.tsx       # メインアプリケーション
+│   └── renderer.tsx    # HTMLレンダラー
+├── public/
+│   └── static/
+│       └── style.css   # カスタムスタイル
+├── dist/               # ビルド出力
+├── ecosystem.config.cjs # PM2設定
+├── package.json
+├── vite.config.ts
+└── wrangler.jsonc      # Cloudflare設定
 ```
 
-Pass the `CloudflareBindings` as generics when instantiation `Hono`:
+## 開発メモ
 
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-```
+### 参考資料
+- 枝野幸男氏のWebサイト: https://www.edano.gr.jp/
+- 神戸市須磨区基本計画: https://www.city.kobe.lg.jp/documents/8005/suma_genan.pdf
+
+### 実装済み
+- ✅ レスポンシブデザイン
+- ✅ スムーススクロール
+- ✅ ホバーエフェクト
+- ✅ アイコン統合
+- ✅ SEO対応メタタグ
+
+### 今後の改善案
+- 📋 お問い合わせフォームの実装
+- 📋 ニュース・活動報告セクション
+- 📋 写真ギャラリー
+- 📋 SNS連携
+- 📋 多言語対応
+
+## ライセンス
+© 2024 湯川寛之 All Rights Reserved.
