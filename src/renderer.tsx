@@ -5,12 +5,12 @@ export const renderer = jsxRenderer(({ children }) => {
     <html lang="ja">
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=640, user-scalable=yes" />
-        <title>湯川寛之オフィシャルサイト　神戸市須磨区</title>
-        <meta name="Description" content="湯川寛之の政策を発信するサイト。基本理念や須磨区の10の重点プロジェクトが掲載されている。" />
-        <link type="text/css" href="/static/default.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>湯川寛之オフィシャルサイト - すべての人が輝く須磨区へ</title>
+        <meta name="Description" content="湯川寛之の政策を発信するサイト。神戸市須磨区の未来のために、5つの基本政策と10の重点プロジェクトを掲げています。" />
+        <link type="text/css" href="/static/modern.css" rel="stylesheet" />
       </head>
-      <body class="drawer drawer--top">{children}</body>
+      <body>{children}</body>
     </html>
   )
 })

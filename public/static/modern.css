@@ -1,0 +1,833 @@
+@charset "UTF-8";
+
+/* ==========================================
+   国民民主党カラー - 湯川寛之オフィシャルサイト
+   メインカラー: 青 #0051A5
+   アクセントカラー: 黄色 #FFD700
+========================================== */
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================
+   ヒーローセクション
+========================================== */
+.hero-section {
+  position: relative;
+  height: 600px;
+  background: linear-gradient(135deg, #0051A5 0%, #003d7a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-location {
+  font-size: 18px;
+  color: #FFD700;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+}
+
+.hero-name {
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-kana {
+  font-size: 28px;
+  color: #FFD700;
+  margin-bottom: 40px;
+  letter-spacing: 8px;
+}
+
+.hero-catchphrase {
+  margin-top: 40px;
+}
+
+.catchphrase-main {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #FFD700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.catchphrase-sub {
+  font-size: 20px;
+  color: #fff;
+  opacity: 0.95;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   ナビゲーション
+========================================== */
+.main-nav {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin: 0;
+}
+
+.nav-list a {
+  display: block;
+  padding: 20px 30px;
+  color: #0051A5;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-list a:hover {
+  background: #f8f9fa;
+  border-bottom-color: #FFD700;
+  color: #003d7a;
+}
+
+/* ==========================================
+   セクション共通スタイル
+========================================== */
+section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-label {
+  display: inline-block;
+  background: #FFD700;
+  color: #0051A5;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 42px;
+  color: #0051A5;
+  font-weight: bold;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #FFD700;
+}
+
+.section-description {
+  font-size: 18px;
+  color: #666;
+  margin-top: 25px;
+}
+
+/* ==========================================
+   想い・メッセージセクション
+========================================== */
+.message-section {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+}
+
+.message-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.message-main {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 81, 165, 0.1);
+}
+
+.message-heading {
+  font-size: 28px;
+  color: #0051A5;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #FFD700;
+}
+
+.message-text p {
+  margin-bottom: 20px;
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.message-text strong {
+  color: #0051A5;
+  font-weight: bold;
+}
+
+.message-vision {
+  display: flex;
+  flex-direction: column;
+}
+
+.vision-box {
+  background: linear-gradient(135deg, #0051A5 0%, #003d7a 100%);
+  color: #fff;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 81, 165, 0.2);
+}
+
+.vision-box h4 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #FFD700;
+  text-align: center;
+}
+
+.vision-list {
+  list-style: none;
+}
+
+.vision-list li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  position: relative;
+  font-size: 16px;
+}
+
+.vision-list .icon {
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* ==========================================
+   基本理念セクション
+========================================== */
+.vision-section {
+  background: #fff;
+}
+
+.vision-title {
+  font-size: 36px;
+  color: #0051A5;
+  text-align: center;
+  margin-bottom: 35px;
+  font-weight: bold;
+}
+
+.vision-description {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.vision-description p {
+  font-size: 18px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.vision-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.principle-item {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+  padding: 35px;
+  border-radius: 10px;
+  border-top: 4px solid #FFD700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.principle-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 81, 165, 0.15);
+}
+
+.principle-number {
+  font-size: 48px;
+  font-weight: bold;
+  color: #FFD700;
+  margin-bottom: 20px;
+}
+
+.principle-item h4 {
+  font-size: 22px;
+  color: #0051A5;
+  margin-bottom: 15px;
+}
+
+.principle-item p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ==========================================
+   政策セクション
+========================================== */
+.policies-section {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+}
+
+.policies-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.policy-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 15px rgba(0, 81, 165, 0.1);
+  border-left: 6px solid #0051A5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.policy-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0, 81, 165, 0.15);
+}
+
+.policy-number {
+  display: inline-block;
+  background: #FFD700;
+  color: #0051A5;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.policy-title {
+  font-size: 26px;
+  color: #0051A5;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.policy-summary {
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.policy-details h4 {
+  font-size: 18px;
+  color: #0051A5;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  border-left: 4px solid #FFD700;
+}
+
+.policy-details ul {
+  list-style: none;
+}
+
+.policy-details li {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+  line-height: 1.7;
+}
+
+.policy-details li::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-size: 12px;
+}
+
+.policy-details strong {
+  color: #0051A5;
+}
+
+/* ==========================================
+   重点プロジェクトセクション
+========================================== */
+.projects-section {
+  background: #fff;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.project-card {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+  border-radius: 10px;
+  padding: 30px;
+  border-top: 4px solid #0051A5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 81, 165, 0.15);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.project-num {
+  background: #FFD700;
+  color: #0051A5;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.project-header h3 {
+  font-size: 20px;
+  color: #0051A5;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.project-desc {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.project-items {
+  list-style: none;
+}
+
+.project-items li {
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #555;
+}
+
+.project-items li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+/* ==========================================
+   活動実績セクション
+========================================== */
+.activity-section {
+  background: linear-gradient(135deg, #0051A5 0%, #003d7a 100%);
+  color: #fff;
+}
+
+.activity-section .section-label {
+  background: #FFD700;
+  color: #0051A5;
+}
+
+.activity-section .section-title {
+  color: #fff;
+}
+
+.activity-section .section-title::after {
+  background: #FFD700;
+}
+
+.activity-section .section-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.activity-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-number {
+  font-size: 54px;
+  font-weight: bold;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 18px;
+  color: #fff;
+}
+
+.activity-list h3 {
+  font-size: 28px;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.activity-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border-left: 4px solid #FFD700;
+}
+
+.activity-item h4 {
+  font-size: 20px;
+  color: #FFD700;
+  margin-bottom: 15px;
+}
+
+.activity-item p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================
+   プロフィールセクション
+========================================== */
+.profile-section {
+  background: #fff;
+}
+
+.profile-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.profile-main h3 {
+  font-size: 32px;
+  color: #0051A5;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.profile-text p {
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.info-item {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  border-top: 4px solid #FFD700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.info-item h4 {
+  font-size: 20px;
+  color: #0051A5;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.info-item p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   お問い合わせセクション
+========================================== */
+.contact-section {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #fff 100%);
+}
+
+.contact-message {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 15px rgba(0, 81, 165, 0.1);
+  border-left: 6px solid #0051A5;
+}
+
+.contact-message p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #333;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.contact-item {
+  background: #fff;
+  padding: 35px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.contact-detail h4 {
+  font-size: 20px;
+  color: #0051A5;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.contact-detail p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* ==========================================
+   フッター
+========================================== */
+.footer {
+  background: #0051A5;
+  color: #fff;
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-main h3 {
+  font-size: 28px;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.footer-main p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-links {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-links a {
+  color: #fff;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #FFD700;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================
+   レスポンシブ対応
+========================================== */
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 48px;
+  }
+  
+  .hero-kana {
+    font-size: 20px;
+  }
+  
+  .catchphrase-main {
+    font-size: 24px;
+  }
+  
+  .catchphrase-sub {
+    font-size: 16px;
+  }
+  
+  .nav-list {
+    flex-direction: column;
+  }
+  
+  .message-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .vision-principles {
+    grid-template-columns: 1fr;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .activity-stats,
+  .activity-grid,
+  .profile-info,
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
