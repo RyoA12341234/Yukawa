@@ -5,390 +5,596 @@ const app = new Hono()
 
 app.use(renderer)
 
-// メインページ - モダンデザイン + 国民民主党カラー
+// メインページ - 枝野サイト構造 + 国民民主党カラー + 須磨区政策
 app.get('/', (c) => {
   return c.render(
     <div>
-      {/* ===== NAV ===== */}
-      <header class="topbar">
-        <div class="container">
-          <nav class="nav" aria-label="グローバルナビゲーション">
-            <a class="brand" href="#">
-              <span class="brand__mark" aria-hidden="true"></span>
-              <span class="brand__title">
-                <strong>湯川寛之</strong>
-                <span>国民民主党｜神戸市須磨区</span>
-              </span>
-            </a>
-            <div class="navlinks" role="navigation">
-              <a href="#policy">政策</a>
-              <a href="#news">ニュース</a>
-              <a href="#reports">須磨区レポート</a>
-              <a href="#activity">活動報告</a>
-              <a href="#support">応援する</a>
+      {/* ========== HEADER ========== */}
+      <header class="site-header">
+        <div class="header-top">
+          <div class="container header-top-inner">
+            <div class="party-logo">
+              <img 
+                src="https://new-kokumin.jp/wp-content/themes/dpfp2020/assets/images/common/logo.svg" 
+                alt="国民民主党" 
+                height="40"
+              />
             </div>
-            <div class="navactions">
-              <a class="btn btn--ghost" href="#support">ボランティア</a>
-              <a class="btn btn--primary" href="#support">応援・参加</a>
-              <button class="hamburger" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
-                <span aria-hidden="true"></span>
-              </button>
-            </div>
-          </nav>
-          
-          {/* Mobile Drawer */}
-          <div class="drawer" id="drawer" hidden>
-            <div class="drawer__inner">
-              <div class="drawer__links">
-                <a href="#policy">政策</a>
-                <a href="#news">ニュース</a>
-                <a href="#reports">須磨区レポート</a>
-                <a href="#activity">活動報告</a>
-                <a href="#support">応援する</a>
-              </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a class="btn btn--ghost" href="#support" style="flex:1;">ボランティア</a>
-                <a class="btn btn--primary" href="#support" style="flex:1;">応援・参加</a>
-              </div>
-            </div>
+            <nav class="header-nav">
+              <a href="#top" class="nav-link">TOP</a>
+              <a href="#policy" class="nav-link">5つの政策</a>
+              <a href="#report" class="nav-link">須磨区レポート</a>
+              <a href="#profile" class="nav-link">湯川寛之のあゆみ</a>
+              <a href="#activity" class="nav-link">活動報告</a>
+              <a href="#projects" class="nav-link">10の重点プロジェクト</a>
+              <a href="#support" class="nav-link support-link">応援しよう</a>
+            </nav>
+            <button class="menu-toggle" type="button" aria-label="メニュー">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </header>
 
-      {/* ===== HERO ===== */}
-      <section class="hero">
+      {/* モバイルメニュー */}
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+          <a href="#top" class="mobile-nav-link">TOP</a>
+          <a href="#policy" class="mobile-nav-link">5つの政策</a>
+          <a href="#report" class="mobile-nav-link">須磨区レポート</a>
+          <a href="#profile" class="mobile-nav-link">湯川寛之のあゆみ</a>
+          <a href="#activity" class="mobile-nav-link">活動報告</a>
+          <a href="#projects" class="mobile-nav-link">10の重点プロジェクト</a>
+          <a href="#support" class="mobile-nav-link">応援しよう</a>
+        </div>
+      </div>
+
+      {/* ========== HERO IMAGE SECTION ========== */}
+      <section id="top" class="hero-image-section">
+        <div class="hero-image-wrapper">
+          <input type="file" id="hero-image-upload" accept="image/*" style="display:none;" />
+          <label for="hero-image-upload" class="hero-upload-label">
+            ヒーロー画像をアップロード
+          </label>
+          <div class="hero-overlay">
+            <div class="hero-name-plate">
+              <div class="hero-location">神戸市須磨区</div>
+              <h1 class="hero-name">湯川寛之</h1>
+              <div class="hero-kana">ゆかわ ひろゆき</div>
+              <div class="hero-catchphrase">すべての人が輝く須磨区へ</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TOPICS SECTION ========== */}
+      <section class="topics-section">
         <div class="container">
-          <div class="hero__grid">
-            <div>
-              <div class="kicker"><i aria-hidden="true"></i> 国民民主党 神戸市須磨区</div>
-              <h1><span class="name">湯川寛之</span><br/>すべての人が輝く須磨区へ</h1>
-              <p class="sub">「支えあう社会でまっとうな明日を実現します」</p>
-              <p class="lead">
+          <div class="topics-header">
+            <h2 class="topics-title">TOPICS</h2>
+          </div>
+          <div class="topics-grid">
+            <article class="topic-item">
+              <time class="topic-date">2024.12.15</time>
+              <h3 class="topic-title">地域懇談会を開催</h3>
+              <p class="topic-text">月2回、各地域で懇談会を開催し、地域課題について意見交換しています。</p>
+            </article>
+            <article class="topic-item">
+              <time class="topic-date">2024.12.10</time>
+              <h3 class="topic-title">政策提言活動</h3>
+              <p class="topic-text">住民の声をまとめ、行政への政策提言を積極的に行っています。</p>
+            </article>
+            <article class="topic-item">
+              <time class="topic-date">2024.12.05</time>
+              <h3 class="topic-title">街頭活動</h3>
+              <p class="topic-text">毎週3回、駅前や商店街で住民の皆様と対話し、生の声を聴いています。</p>
+            </article>
+          </div>
+          <div class="topics-more">
+            <a href="#" class="more-link">もっと見る ›</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 私の想い SECTION ========== */}
+      <section class="vision-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">私の想い</h2>
+            <div class="section-subtitle">神戸市須磨区の未来のために</div>
+          </div>
+          <div class="vision-content">
+            <div class="vision-image">
+              <input type="file" id="vision-image-upload" accept="image/*" style="display:none;" />
+              <label for="vision-image-upload" class="image-upload-label">
+                画像をアップロード
+              </label>
+            </div>
+            <div class="vision-text">
+              <p class="vision-lead">
                 神戸市須磨区で生まれ育ち、この街を愛し、この街の未来を真剣に考えています。
-                地域の皆様との対話を重ね、一人ひとりの声に耳を傾けながら、
+              </p>
+              <p>
+                須磨区は、美しい海と山に囲まれ、歴史と文化が息づく魅力的なまちです。しかし、
+                少子高齢化、人口減少、地域コミュニティの希薄化など、さまざまな課題に直面しています。
+              </p>
+              <p>
+                私は、地域の皆様との対話を重ね、一人ひとりの声に耳を傾けながら、
                 すべての住民が幸せに暮らせる須磨区を実現するため、日々活動しています。
               </p>
-              <div class="hero__cta">
-                <a class="btn btn--primary" href="#policy">政策を見る</a>
-                <a class="btn btn--ghost" href="#news">最新ニュース</a>
-              </div>
-            </div>
-            <div class="hero__media" aria-label="メインビジュアル">
-              <div class="hero__badges" aria-hidden="true">
-                <div class="badge">
-                  <b>活動実績</b>
-                  <span>500+ 地域訪問回数</span>
-                </div>
-                <div class="badge">
-                  <b>住民の声</b>
-                  <span>1,200+ 声を聴取</span>
-                </div>
-              </div>
-              <div class="portrait" aria-hidden="true">
-                <div class="silhouette">
-                  <input type="file" id="hero-image-upload" accept="image/*" style="display:none;" />
-                  <label for="hero-image-upload" class="upload-label">画像をアップロード</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== NEWS / TOPICS ===== */}
-      <section id="news" class="section">
-        <div class="container">
-          <div class="section__head">
-            <div>
-              <h2>須磨区の未来のために</h2>
-              <p>活動報告・トピックス・お知らせ</p>
-            </div>
-            <a class="link" href="#">
-              一覧へ
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="grid-3">
-            <article class="card">
-              <div class="card__media" role="img" aria-label="トピックス画像">
-                <input type="file" class="card-image-upload" accept="image/*" style="display:none;" id="card-1" />
-                <label for="card-1" class="card-upload-label">画像をアップロード</label>
-              </div>
-              <div class="card__body">
-                <span class="tag">TOPICS</span>
-                <h3>地域懇談会を開催</h3>
-                <p>月2回、各地域で懇談会を開催し、地域課題について意見交換しています。</p>
-              </div>
-              <div class="card__footer">
-                <a class="link" href="#">詳しく見る
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
-            <article class="card">
-              <div class="card__media" role="img" aria-label="ニュース画像">
-                <input type="file" class="card-image-upload" accept="image/*" style="display:none;" id="card-2" />
-                <label for="card-2" class="card-upload-label">画像をアップロード</label>
-              </div>
-              <div class="card__body">
-                <span class="tag">NEWS</span>
-                <h3>政策提言活動</h3>
-                <p>住民の声をまとめ、行政への政策提言を積極的に行っています。</p>
-              </div>
-              <div class="card__footer">
-                <a class="link" href="#">詳しく見る
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
-            <article class="card">
-              <div class="card__media" role="img" aria-label="お知らせ画像">
-                <input type="file" class="card-image-upload" accept="image/*" style="display:none;" id="card-3" />
-                <label for="card-3" class="card-upload-label">画像をアップロード</label>
-              </div>
-              <div class="card__body">
-                <span class="tag">INFO</span>
-                <h3>街頭活動</h3>
-                <p>毎週3回、駅前や商店街で住民の皆様と対話し、生の声を聴いています。</p>
-              </div>
-              <div class="card__footer">
-                <a class="link" href="#">詳しく見る
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== POLICY (Blue diagonal tiles) ===== */}
-      <section id="policy" class="section">
-        <div class="container">
-          <div class="policy">
-            <div class="policy__inner">
-              <div class="policy__top">
-                <div>
-                  <h2>5つの基本政策</h2>
-                  <p>須磨区の未来を創る具体的な政策</p>
-                </div>
-                <a class="btn btn--ghost" href="#" style="border-color:rgba(255,255,255,.24); color:#fff; background:rgba(255,255,255,.08);">
-                  政策詳細
-                </a>
-              </div>
-              <div class="tiles">
-                <div class="tile">
-                  <b>安全・安心の<br/>まちづくり</b>
-                  <span>防犯・防災体制の充実</span>
-                  <div class="num">01</div>
-                </div>
-                <div class="tile">
-                  <b>子ども・若者が<br/>育つまち</b>
-                  <span>待機児童ゼロ・教育充実</span>
-                  <div class="num">02</div>
-                </div>
-                <div class="tile">
-                  <b>健やかに<br/>暮らせるまち</b>
-                  <span>高齢者・障害者支援</span>
-                  <div class="num">03</div>
-                </div>
-                <div class="tile">
-                  <b>自然・歴史<br/>文化を楽しむ</b>
-                  <span>須磨の資源活用</span>
-                  <div class="num">04</div>
-                </div>
-                <div class="tile">
-                  <b>交流・参画で<br/>活気あふれる</b>
-                  <span>地域活性化・定住促進</span>
-                  <div class="num">05</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== 10の重点プロジェクト ===== */}
-      <section class="section">
-        <div class="container">
-          <div class="section__head">
-            <div>
-              <h2>10の重点プロジェクト</h2>
-              <p>須磨区の未来を切り拓く優先施策</p>
-            </div>
-          </div>
-          <div class="projects-grid">
-            {[
-              { num: "01", title: "地域のつながり・防犯", desc: "自治会活動支援、防犯カメラ設置補助、通学路安全確保" },
-              { num: "02", title: "災害に強いまちづくり", desc: "木造住宅耐震化促進、避難所環境整備、防災訓練支援" },
-              { num: "03", title: "子どもの笑顔をはぐくむ", desc: "保育所整備、待機児童対策、中学校給食改善" },
-              { num: "04", title: "地域で支えあう福祉", desc: "地域福祉センター拠点化、認知症サポーター養成" },
-              { num: "05", title: "歴史・文化を次世代へ", desc: "須磨離宮公園再整備、伝統行事継承支援" },
-              { num: "06", title: "魅力・活気あふれるまち", desc: "観光ポータル運営、商店街にぎわい支援" },
-              { num: "07", title: "参画と協働のまちづくり", desc: "区民広報紙発信、区民まつり開催" },
-              { num: "08", title: "海と山を活かす", desc: "須磨海岸活用促進、里山保全活動" },
-              { num: "09", title: "名谷リノベーション", desc: "名谷駅前再開発、図書館充実、住宅再生" },
-              { num: "10", title: "須磨海浜公園・海辺再生", desc: "水族園再整備、施設誘致、歩行者空間整備" }
-            ].map((project) => (
-              <div class="project-card">
-                <div class="project-num">{project.num}</div>
-                <h3>{project.title}</h3>
-                <p>{project.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== REPORTS / ACTIVITY ===== */}
-      <section class="section" id="reports">
-        <div class="container">
-          <div class="section__head">
-            <div>
-              <h2>須磨区レポート</h2>
-              <p>地域の課題と解決策を定期的に発信</p>
-            </div>
-            <a class="link" href="#">
-              一覧へ
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="split">
-            <article class="paper">
-              <div class="paper__head">
-                <h3>最新レポート</h3>
-                <span class="tag">REPORT</span>
-              </div>
-              <div class="paper__body">
-                <div class="paper__mock" aria-label="レポートサムネイル">
-                  <input type="file" id="report-upload" accept="image/*" style="display:none;" />
-                  <label for="report-upload" class="upload-label-inline">画像をアップロード</label>
-                </div>
-                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                  <a class="btn btn--primary" href="#">PDFを開く</a>
-                  <a class="btn btn--ghost" href="#">バックナンバー</a>
-                </div>
-              </div>
-            </article>
-            <article class="paper" id="activity">
-              <div class="paper__head">
-                <h3>活動報告（動画）</h3>
-                <span class="tag">MOVIE</span>
-              </div>
-              <div class="paper__body">
-                <div class="video" aria-label="動画プレースホルダー">
-                  <div class="play" aria-hidden="true"></div>
-                </div>
-                <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-                  <a class="btn btn--primary" href="#">動画一覧</a>
-                  <a class="btn btn--ghost" href="#">活動レポート</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SUPPORT / SNS ===== */}
-      <section id="support" class="support">
-        <div class="container">
-          <div class="section__head" style="padding-top:18px; margin-bottom:10px;">
-            <div>
-              <h2>湯川寛之を応援しよう</h2>
-              <p>SNS・メール・参加の導線</p>
-            </div>
-          </div>
-          <div class="support__grid" role="list">
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>SNS</div><small>最新情報</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>メール</div><small>ニュースレター</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>応援</div><small>活動支援</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>ボランティア</div><small>参加する</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>サポーター</div><small>会員登録</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>街頭予定</div><small>日程</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>お問い合わせ</div><small>連絡</small></a>
-            <a class="pill" role="listitem" href="#"><i aria-hidden="true"></i><div>後援会</div><small>加入</small></a>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FOOTER ===== */}
-      <footer>
-        <div class="container">
-          <div class="footer__top">
-            <div class="footer__col">
-              <div class="brand" style="min-width:auto;">
-                <span class="brand__mark" aria-hidden="true"></span>
-                <span class="brand__title">
-                  <strong>湯川寛之</strong>
-                  <span>国民民主党｜神戸市須磨区</span>
-                </span>
-              </div>
-              <p style="margin:10px 0 0; color:var(--muted); font-weight:700;">
-                神戸市須磨区で生まれ育ち、この街を愛し、すべての住民が幸せに暮らせる須磨区を実現するため、日々活動しています。
+              <p class="vision-emphasis">
+                「人間中心の経済」を理念に、能力開発への投資、安心の立て直し、個人の尊重を軸とした
+                政策を推進し、誰もが輝ける須磨区を目指します。
               </p>
             </div>
-            <div class="footer__col">
-              <h4>メニュー</h4>
-              <a href="#policy">政策</a>
-              <a href="#news">ニュース</a>
-              <a href="#reports">須磨区レポート</a>
-              <a href="#activity">活動報告</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 5つの基本政策 SECTION ========== */}
+      <section id="policy" class="policy-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">5つの基本政策</h2>
+            <div class="section-subtitle">須磨区基本計画に基づく具体的な政策</div>
+          </div>
+
+          {/* 政策01 */}
+          <article class="policy-card">
+            <div class="policy-number">01</div>
+            <div class="policy-content">
+              <h3 class="policy-title">安全で安心なまちづくり</h3>
+              <div class="policy-image">
+                <input type="file" id="policy1-image-upload" accept="image/*" style="display:none;" />
+                <label for="policy1-image-upload" class="image-upload-label">
+                  画像をアップロード
+                </label>
+              </div>
+              <div class="policy-description">
+                <p class="policy-lead">
+                  阪神・淡路大震災の教訓を継承し、災害に強く、犯罪のない安全・安心なまちを実現します。
+                </p>
+                <div class="policy-points">
+                  <h4>主な取り組み</h4>
+                  <ul>
+                    <li><strong>防災・減災対策の強化</strong><br/>
+                    自主防災組織の活動支援、避難所機能の強化、感震ブレーカー設置促進、災害備蓄品の充実</li>
+                    <li><strong>木造住宅耐震化率80%達成</strong><br/>
+                    住宅の耐震化促進、危険なブロック塀の撤去支援、空き家対策の推進</li>
+                    <li><strong>防犯カメラ設置補助で犯罪発生率30%削減</strong><br/>
+                    防犯カメラの設置支援、地域見守り活動の推進、防犯灯・街路灯の整備</li>
+                    <li><strong>交通安全対策の推進</strong><br/>
+                    通学路の安全確保、交通安全意識の向上、高齢者交通事故防止対策</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="footer__col">
-              <h4>参加</h4>
-              <a href="#support">応援</a>
-              <a href="#support">ボランティア</a>
-              <a href="#support">サポーター</a>
-              <a href="#support">お問い合わせ</a>
+          </article>
+
+          {/* 政策02 */}
+          <article class="policy-card">
+            <div class="policy-number">02</div>
+            <div class="policy-content">
+              <h3 class="policy-title">子どもから高齢者まで健やかに暮らせるまちづくり</h3>
+              <div class="policy-image">
+                <input type="file" id="policy2-image-upload" accept="image/*" style="display:none;" />
+                <label for="policy2-image-upload" class="image-upload-label">
+                  画像をアップロード
+                </label>
+              </div>
+              <div class="policy-description">
+                <p class="policy-lead">
+                  すべての世代が健康で安心して暮らせる環境を整備し、支え合いの地域社会を実現します。
+                </p>
+                <div class="policy-points">
+                  <h4>主な取り組み</h4>
+                  <ul>
+                    <li><strong>待機児童ゼロの実現</strong><br/>
+                    保育所・認定こども園の整備、地域子育て支援拠点の充実、産前産後ケアの推進</li>
+                    <li><strong>教育環境の充実</strong><br/>
+                    中学校給食の質的向上、教育施設の整備、放課後児童クラブの充実</li>
+                    <li><strong>認知症サポーター1,000人養成</strong><br/>
+                    認知症ケアの推進、地域福祉センターを拠点とした活動の活性化</li>
+                    <li><strong>健康寿命の延伸</strong><br/>
+                    フレイル予防プログラムの実施、健康診査の受診促進、介護予防活動の支援</li>
+                    <li><strong>障害者支援の充実</strong><br/>
+                    相談支援体制の強化、就労支援の充実、バリアフリー化の推進</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="footer__col">
-              <h4>SNS</h4>
-              <a href="#">X（旧Twitter）</a>
-              <a href="#">YouTube</a>
-              <a href="#">Facebook</a>
-              <a href="#">Instagram</a>
+          </article>
+
+          {/* 政策03 */}
+          <article class="policy-card">
+            <div class="policy-number">03</div>
+            <div class="policy-content">
+              <h3 class="policy-title">まちの魅力を高め、人を呼び込むまちづくり</h3>
+              <div class="policy-image">
+                <input type="file" id="policy3-image-upload" accept="image/*" style="display:none;" />
+                <label for="policy3-image-upload" class="image-upload-label">
+                  画像をアップロード
+                </label>
+              </div>
+              <div class="policy-description">
+                <p class="policy-lead">
+                  須磨の豊かな観光資源を活かし、若年層の定住促進と地域の賑わいを創出します。
+                </p>
+                <div class="policy-points">
+                  <h4>主な取り組み</h4>
+                  <ul>
+                    <li><strong>名谷駅周辺の活性化</strong><br/>
+                    駅前の再整備、名谷図書館のリニューアル、商業施設の充実</li>
+                    <li><strong>須磨海浜公園・須磨離宮公園の魅力向上</strong><br/>
+                    新水族館の整備支援、公園施設のリニューアル、周辺エリアの歩行空間整備</li>
+                    <li><strong>若年層の定住促進</strong><br/>
+                    魅力的な住環境の形成、交通利便性の向上、子育て世帯への支援</li>
+                    <li><strong>観光・賑わいの創出</strong><br/>
+                    観光ポータルサイトの運営、イベントの開催、商店街の活性化支援</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* 政策04 */}
+          <article class="policy-card">
+            <div class="policy-number">04</div>
+            <div class="policy-content">
+              <h3 class="policy-title">誰もがいきいきと活躍し、交流するまちづくり</h3>
+              <div class="policy-image">
+                <input type="file" id="policy4-image-upload" accept="image/*" style="display:none;" />
+                <label for="policy4-image-upload" class="image-upload-label">
+                  画像をアップロード
+                </label>
+              </div>
+              <div class="policy-description">
+                <p class="policy-lead">
+                  市民活動を支援し、多様な主体が協働する活力あるコミュニティを形成します。
+                </p>
+                <div class="policy-points">
+                  <h4>主な取り組み</h4>
+                  <ul>
+                    <li><strong>市民活動の活性化</strong><br/>
+                    地域活動の担い手育成、ボランティア活動への支援、NPO・市民団体との協働</li>
+                    <li><strong>多文化共生の推進</strong><br/>
+                    外国人住民への支援、多文化交流イベントの開催、やさしい日本語の普及</li>
+                    <li><strong>生涯学習・スポーツの振興</strong><br/>
+                    図書館・スポーツ施設の充実、生涯学習プログラムの提供</li>
+                    <li><strong>地域交流の促進</strong><br/>
+                    区民まつりの開催、伝統行事の継承、世代間交流の推進</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* 政策05 */}
+          <article class="policy-card">
+            <div class="policy-number">05</div>
+            <div class="policy-content">
+              <h3 class="policy-title">豊かな自然・歴史・文化を次世代へつなぐまちづくり</h3>
+              <div class="policy-image">
+                <input type="file" id="policy5-image-upload" accept="image/*" style="display:none;" />
+                <label for="policy5-image-upload" class="image-upload-label">
+                  画像をアップロード
+                </label>
+              </div>
+              <div class="policy-description">
+                <p class="policy-lead">
+                  須磨の豊かな自然環境と歴史・文化を保全・継承し、地域の誇りとして次世代に引き継ぎます。
+                </p>
+                <div class="policy-points">
+                  <h4>主な取り組み</h4>
+                  <ul>
+                    <li><strong>自然環境の保全</strong><br/>
+                    須磨の森・海・里山の保全活動支援、身近な緑や公園の適正管理</li>
+                    <li><strong>歴史・文化の継承</strong><br/>
+                    源平ゆかりの地や万葉の歴史の普及啓発、伝統行事・伝統芸能の保存継承支援</li>
+                    <li><strong>歴史散策ルートの整備</strong><br/>
+                    須磨・一の谷ルート、名谷・妙法寺ルートの整備、案内板・マップの充実</li>
+                    <li><strong>環境教育の推進</strong><br/>
+                    学校での環境学習、地域での自然体験プログラム、歴史学習の機会提供</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* ========== 10の重点プロジェクト SECTION ========== */}
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">10の重点プロジェクト</h2>
+            <div class="section-subtitle">須磨区将来ビジョン実現に向けた優先施策</div>
+          </div>
+          <div class="projects-grid">
+            <article class="project-item">
+              <div class="project-number">01</div>
+              <h3 class="project-title">地域のつながり・防犯力強化</h3>
+              <p class="project-desc">自治会活動支援、防犯カメラ設置補助、通学路安全確保、見守り活動の推進</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">02</div>
+              <h3 class="project-title">災害に強いまちづくり</h3>
+              <p class="project-desc">木造住宅耐震化促進、避難所環境整備、防災訓練支援、感震ブレーカー普及</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">03</div>
+              <h3 class="project-title">子どもの笑顔をはぐくむ</h3>
+              <p class="project-desc">保育所整備、待機児童対策、中学校給食改善、放課後児童クラブ充実</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">04</div>
+              <h3 class="project-title">地域で支えあう福祉</h3>
+              <p class="project-desc">地域福祉センター拠点化、認知症サポーター養成、フレイル予防プログラム</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">05</div>
+              <h3 class="project-title">歴史・文化を次世代へ</h3>
+              <p class="project-desc">須磨離宮公園再整備、伝統行事継承支援、歴史散策ルート整備</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">06</div>
+              <h3 class="project-title">魅力・活気あふれるまち</h3>
+              <p class="project-desc">観光ポータル運営、商店街にぎわい支援、イベント開催</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">07</div>
+              <h3 class="project-title">参画と協働のまちづくり</h3>
+              <p class="project-desc">区民広報紙発信、区民まつり開催、市民活動の担い手育成</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">08</div>
+              <h3 class="project-title">海と山の自然を活かす</h3>
+              <p class="project-desc">須磨海岸活用促進、里山保全活動、環境教育の推進</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">09</div>
+              <h3 class="project-title">名谷駅周辺の活性化</h3>
+              <p class="project-desc">駅前再開発、名谷図書館充実、商業施設リニューアル、住宅再生</p>
+            </article>
+            <article class="project-item">
+              <div class="project-number">10</div>
+              <h3 class="project-title">須磨海浜公園・海辺再生</h3>
+              <p class="project-desc">水族園再整備、施設誘致、歩行者空間整備、観光拠点化</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 須磨区レポート SECTION ========== */}
+      <section id="report" class="report-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">須磨区レポート</h2>
+            <div class="section-subtitle">地域の課題と解決策を定期的に発信</div>
+          </div>
+          <div class="report-content">
+            <div class="report-image">
+              <input type="file" id="report-image-upload" accept="image/*" style="display:none;" />
+              <label for="report-image-upload" class="image-upload-label">
+                レポート画像をアップロード
+              </label>
+            </div>
+            <div class="report-text">
+              <p>
+                地域の皆様から寄せられた声をもとに、須磨区の課題や取り組みを分かりやすくまとめた
+                「須磨区レポート」を定期的に発行しています。
+              </p>
+              <p>
+                住民の皆様との対話で得た生の声を、政策提言や行政への働きかけに活かし、
+                実効性のある改善策を提案しています。
+              </p>
+              <div class="report-actions">
+                <a href="#" class="btn-primary">最新レポートを見る</a>
+                <a href="#" class="btn-secondary">バックナンバー</a>
+              </div>
             </div>
           </div>
-          <div class="footer__bottom">
-            <span>© 2024 湯川寛之 All Rights Reserved.</span>
-            <span>神戸市須磨区　すべての人が輝く須磨区へ</span>
+        </div>
+      </section>
+
+      {/* ========== 活動報告 SECTION ========== */}
+      <section id="activity" class="activity-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">活動報告</h2>
+            <div class="section-subtitle">日々の活動をお伝えします</div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">地域訪問回数</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">1,200+</div>
+              <div class="stat-label">住民の声を聴取</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">地域イベント参加</div>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3 class="activity-subtitle">主な活動</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-icon">📢</div>
+                <div class="activity-detail">
+                  <h4>街頭活動</h4>
+                  <p>毎週3回、駅前や商店街で住民の皆様と対話し、生の声を聴いています。</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">💬</div>
+                <div class="activity-detail">
+                  <h4>地域懇談会</h4>
+                  <p>月2回、各地域で懇談会を開催し、地域課題について意見交換しています。</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">📝</div>
+                <div class="activity-detail">
+                  <h4>政策提言</h4>
+                  <p>住民の声をまとめ、行政への政策提言を積極的に行っています。</p>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">🤝</div>
+                <div class="activity-detail">
+                  <h4>ボランティア活動</h4>
+                  <p>清掃活動、防災訓練、地域イベントのサポートなど、地域に根ざした活動を続けています。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 湯川寛之のあゆみ SECTION ========== */}
+      <section id="profile" class="profile-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">湯川寛之のあゆみ</h2>
+            <div class="section-subtitle">プロフィール</div>
+          </div>
+          <div class="profile-content">
+            <div class="profile-image">
+              <input type="file" id="profile-image-upload" accept="image/*" style="display:none;" />
+              <label for="profile-image-upload" class="image-upload-label">
+                プロフィール画像をアップロード
+              </label>
+            </div>
+            <div class="profile-text">
+              <div class="profile-info">
+                <h3>湯川寛之（ゆかわ ひろゆき）</h3>
+                <p class="profile-role">国民民主党 神戸市須磨区</p>
+              </div>
+              <div class="profile-details">
+                <h4>現在の活動</h4>
+                <ul>
+                  <li>神戸市須磨区での地域活動を展開</li>
+                  <li>住民との対話を重視した政策立案</li>
+                  <li>地域課題の解決に向けた提言活動</li>
+                </ul>
+                <h4>経歴</h4>
+                <p>
+                  神戸市須磨区出身。地域の発展と住民の幸せを願い、政治活動を決意。
+                  人間中心の経済を理念に、誰もが輝ける社会の実現を目指して活動中。
+                </p>
+                <h4>家族</h4>
+                <p>準備中</p>
+                <h4>座右の銘</h4>
+                <p>「一隅を照らす」 - 自分の置かれた場所で精一杯輝き、周囲を照らす存在でありたい</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== 応援しよう SECTION ========== */}
+      <section id="support" class="support-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">湯川寛之を応援しよう</h2>
+            <div class="section-subtitle">一緒に須磨区の未来を創りましょう</div>
+          </div>
+          <div class="support-grid">
+            <div class="support-card">
+              <div class="support-icon">💝</div>
+              <h3>応援・寄付</h3>
+              <p>活動へのご支援をお願いします</p>
+              <a href="#" class="btn-primary">詳しく見る</a>
+            </div>
+            <div class="support-card">
+              <div class="support-icon">🤝</div>
+              <h3>ボランティア</h3>
+              <p>一緒に活動しませんか</p>
+              <a href="#" class="btn-primary">参加する</a>
+            </div>
+            <div class="support-card">
+              <div class="support-icon">📧</div>
+              <h3>メールマガジン</h3>
+              <p>最新情報をお届けします</p>
+              <a href="#" class="btn-primary">登録する</a>
+            </div>
+            <div class="support-card">
+              <div class="support-icon">📱</div>
+              <h3>SNSフォロー</h3>
+              <p>日々の活動を発信中</p>
+              <div class="sns-links">
+                <a href="#" aria-label="X">X</a>
+                <a href="#" aria-label="Facebook">FB</a>
+                <a href="#" aria-label="Instagram">IG</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FOOTER ========== */}
+      <footer class="site-footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-logo">
+              <div class="footer-name">湯川寛之</div>
+              <div class="footer-party">国民民主党 | 神戸市須磨区</div>
+            </div>
+            <nav class="footer-nav">
+              <a href="#policy">5つの政策</a>
+              <a href="#projects">10の重点プロジェクト</a>
+              <a href="#report">須磨区レポート</a>
+              <a href="#activity">活動報告</a>
+              <a href="#profile">プロフィール</a>
+              <a href="#support">応援する</a>
+            </nav>
+          </div>
+          <div class="footer-bottom">
+            <p class="footer-address">事務所: 神戸市須磨区（準備中）</p>
+            <p class="footer-copyright">© 2024 湯川寛之 All Rights Reserved.</p>
           </div>
         </div>
       </footer>
 
+      {/* JavaScript */}
       <script dangerouslySetInnerHTML={{__html: `
-        const btn = document.querySelector(".hamburger");
-        const drawer = document.getElementById("drawer");
+        // メニュートグル
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.getElementById('mobileMenu');
         
-        btn?.addEventListener("click", () => {
-          const opened = btn.getAttribute("aria-expanded") === "true";
-          btn.setAttribute("aria-expanded", String(!opened));
-          drawer.hidden = opened;
-        });
-        
-        drawer?.addEventListener("click", (e) => {
-          const a = e.target.closest("a");
-          if (!a) return;
-          btn.setAttribute("aria-expanded", "false");
-          drawer.hidden = true;
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+          });
+          
+          // メニューリンククリックで閉じる
+          document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.remove('active');
+              menuToggle.classList.remove('active');
+            });
+          });
+        }
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
         });
 
         // 画像アップロード機能
-        function setupImageUpload(inputId, targetSelector) {
+        function setupImageUpload(inputId, targetClass) {
           const input = document.getElementById(inputId);
           if (!input) return;
           
@@ -397,12 +603,18 @@ app.get('/', (c) => {
             if (file && file.type.startsWith('image/')) {
               const reader = new FileReader();
               reader.onload = function(event) {
-                const target = document.querySelector(targetSelector);
+                let target;
+                if (inputId === 'hero-image-upload') {
+                  target = document.querySelector('.hero-image-wrapper');
+                } else {
+                  target = input.closest('.' + targetClass) || input.parentElement;
+                }
+                
                 if (target) {
                   target.style.backgroundImage = 'url(' + event.target.result + ')';
                   target.style.backgroundSize = 'cover';
                   target.style.backgroundPosition = 'center';
-                  const label = target.querySelector('.upload-label, .card-upload-label, .upload-label-inline');
+                  const label = input.nextElementSibling;
                   if (label) label.style.display = 'none';
                 }
               };
@@ -411,35 +623,16 @@ app.get('/', (c) => {
           });
         }
 
-        // ヒーロー画像
-        setupImageUpload('hero-image-upload', '.silhouette');
-        
-        // カード画像
-        setupImageUpload('card-1', '#card-1 + .card-upload-label').parentElement;
-        setupImageUpload('card-2', '#card-2 + .card-upload-label').parentElement;
-        setupImageUpload('card-3', '#card-3 + .card-upload-label').parentElement;
-        
-        // レポート画像
-        setupImageUpload('report-upload', '.paper__mock');
-        
-        // カード用の画像アップロード
-        document.querySelectorAll('.card-image-upload').forEach(input => {
-          input.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-              const reader = new FileReader();
-              reader.onload = function(event) {
-                const cardMedia = input.parentElement;
-                cardMedia.style.backgroundImage = 'url(' + event.target.result + ')';
-                cardMedia.style.backgroundSize = 'cover';
-                cardMedia.style.backgroundPosition = 'center';
-                const label = cardMedia.querySelector('.card-upload-label');
-                if (label) label.style.display = 'none';
-              };
-              reader.readAsDataURL(file);
-            }
-          });
-        });
+        // 各画像アップロードの設定
+        setupImageUpload('hero-image-upload', 'hero-image-wrapper');
+        setupImageUpload('vision-image-upload', 'vision-image');
+        setupImageUpload('policy1-image-upload', 'policy-image');
+        setupImageUpload('policy2-image-upload', 'policy-image');
+        setupImageUpload('policy3-image-upload', 'policy-image');
+        setupImageUpload('policy4-image-upload', 'policy-image');
+        setupImageUpload('policy5-image-upload', 'policy-image');
+        setupImageUpload('report-image-upload', 'report-image');
+        setupImageUpload('profile-image-upload', 'profile-image');
       `}} />
     </div>
   )
