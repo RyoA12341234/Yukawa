@@ -1,9 +1,25 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
+import { serveStatic } from 'hono/cloudflare-workers'
 
 const app = new Hono()
 
 app.use(renderer)
+
+// 静的ファイル配信
+app.use('/static/*', serveStatic({ root: './public' }))
+app.use('/data/*', serveStatic({ root: './public' }))
+
+// コンテンツAPI
+app.get('/api/content', async (c) => {
+  try {
+    const response = await fetch('https://raw.githubusercontent.com/RyoA12341234/Yukawa/main/public/data/content.json')
+    const data = await response.json()
+    return c.json(data)
+  } catch (error) {
+    return c.json({ error: 'Failed to load content' }, 500)
+  }
+})
 
 // メインページ - 枝野サイト構造 + 国民民主党カラー + 須磨区政策
 app.get('/', (c) => {
@@ -75,25 +91,16 @@ app.get('/', (c) => {
           <div class="topics-header">
             <h2 class="topics-title">TOPICS</h2>
           </div>
-          <div class="topics-grid">
+          <div class="topics-grid" id="topics-grid">
+            {/* JavaScriptで動的に読み込まれます */}
             <article class="topic-item">
-              <time class="topic-date">2024.12.15</time>
-              <h3 class="topic-title">地域懇談会を開催</h3>
-              <p class="topic-text">月2回、各地域で懇談会を開催し、地域課題について意見交換しています。</p>
-            </article>
-            <article class="topic-item">
-              <time class="topic-date">2024.12.10</time>
-              <h3 class="topic-title">政策提言活動</h3>
-              <p class="topic-text">住民の声をまとめ、行政への政策提言を積極的に行っています。</p>
-            </article>
-            <article class="topic-item">
-              <time class="topic-date">2024.12.05</time>
-              <h3 class="topic-title">街頭活動</h3>
-              <p class="topic-text">毎週3回、駅前や商店街で住民の皆様と対話し、生の声を聴いています。</p>
+              <time class="topic-date">読み込み中...</time>
+              <h3 class="topic-title">コンテンツを読み込んでいます</h3>
+              <p class="topic-text">少々お待ちください...</p>
             </article>
           </div>
           <div class="topics-more">
-            <a href="#" class="more-link">もっと見る ›</a>
+            <a href="#all-activities" class="more-link">もっと見る ›</a>
           </div>
         </div>
       </section>
@@ -456,6 +463,22 @@ app.get('/', (c) => {
         </div>
       </section>
 
+      {/* ========== 活動報告詳細 SECTION ========== */}
+      <section id="all-activities" class="all-activities-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">活動報告一覧</h2>
+            <div class="section-subtitle">日々の活動を写真と共にお伝えします</div>
+          </div>
+          <div id="activities-list" class="activities-list">
+            {/* JavaScriptで動的に読み込まれます */}
+            <div class="activity-detail-card">
+              <p>活動報告を読み込んでいます...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== 湯川寛之のあゆみ SECTION ========== */}
       <section id="profile" class="profile-section">
         <div class="container">
@@ -563,6 +586,86 @@ app.get('/', (c) => {
 
       {/* JavaScript */}
       <script dangerouslySetInnerHTML={{__html: `
+        // コンテンツ読み込み
+        async function loadContent() {
+          try {
+            const response = await fetch('https://raw.githubusercontent.com/RyoA12341234/Yukawa/main/public/data/content.json');
+            const data = await response.json();
+            
+            // TOPICSを表示
+            renderTopics(data.topics);
+            
+            // 活動報告詳細を表示
+            renderActivities(data.activities);
+            
+            // 統計情報を更新
+            updateStats(data.stats);
+          } catch (error) {
+            console.error('コンテンツの読み込みに失敗しました:', error);
+          }
+        }
+        
+        // TOPICS表示
+        function renderTopics(topics) {
+          const grid = document.getElementById('topics-grid');
+          if (!grid || !topics) return;
+          
+          grid.innerHTML = topics.slice(0, 3).map(topic => \`
+            <article class="topic-item">
+              <time class="topic-date">\${formatDate(topic.date)}</time>
+              <span class="topic-category">\${topic.category}</span>
+              <h3 class="topic-title">\${topic.title}</h3>
+              <p class="topic-text">\${topic.content}</p>
+              \${topic.image ? \`<img src="\${topic.image}" alt="\${topic.title}" class="topic-image" />\` : ''}
+            </article>
+          \`).join('');
+        }
+        
+        // 活動報告詳細表示
+        function renderActivities(activities) {
+          const list = document.getElementById('activities-list');
+          if (!list || !activities) return;
+          
+          list.innerHTML = activities.map(activity => \`
+            <article class="activity-detail-card">
+              <div class="activity-detail-header">
+                <time class="activity-date">\${formatDate(activity.date)}</time>
+                <span class="activity-category">\${activity.category}</span>
+              </div>
+              <h3 class="activity-detail-title">\${activity.title}</h3>
+              <p class="activity-detail-description">\${activity.description}</p>
+              \${activity.images && activity.images.length > 0 ? \`
+                <div class="activity-images">
+                  \${activity.images.map(img => \`
+                    <img src="\${img}" alt="\${activity.title}" class="activity-image" />
+                  \`).join('')}
+                </div>
+              \` : ''}
+            </article>
+          \`).join('');
+        }
+        
+        // 統計情報更新
+        function updateStats(stats) {
+          if (!stats) return;
+          
+          const statCards = document.querySelectorAll('.stat-card');
+          if (statCards.length >= 3) {
+            statCards[0].querySelector('.stat-number').textContent = stats.visits + '+';
+            statCards[1].querySelector('.stat-number').textContent = stats.voices + '+';
+            statCards[2].querySelector('.stat-number').textContent = stats.events + '+';
+          }
+        }
+        
+        // 日付フォーマット
+        function formatDate(dateStr) {
+          const date = new Date(dateStr);
+          return \`\${date.getFullYear()}.\${String(date.getMonth() + 1).padStart(2, '0')}.\${String(date.getDate()).padStart(2, '0')}\`;
+        }
+        
+        // ページ読み込み時にコンテンツを取得
+        document.addEventListener('DOMContentLoaded', loadContent);
+
         // メニュートグル
         const menuToggle = document.querySelector('.menu-toggle');
         const mobileMenu = document.getElementById('mobileMenu');

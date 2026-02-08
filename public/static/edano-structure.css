@@ -360,6 +360,17 @@ ul {
   font-size: 14px;
   font-weight: 500;
   display: block;
+  margin-bottom: 5px;
+}
+
+.topic-category {
+  display: inline-block;
+  background: var(--primary-yellow);
+  color: var(--primary-blue);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 4px;
   margin-bottom: 10px;
 }
 
@@ -374,6 +385,15 @@ ul {
   color: var(--gray-700);
   font-size: 15px;
   line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.topic-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-top: 15px;
 }
 
 .topics-more {
@@ -388,6 +408,82 @@ ul {
 
 .more-link:hover {
   color: var(--dark-blue);
+}
+
+/* ========== ALL ACTIVITIES SECTION ========== */
+.all-activities-section {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.activity-detail-card {
+  background: var(--gray-50);
+  border-radius: 8px;
+  padding: 30px;
+  border-left: 6px solid var(--primary-blue);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.activity-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.activity-date {
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.activity-category {
+  display: inline-block;
+  background: var(--primary-yellow);
+  color: var(--primary-blue);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.activity-detail-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+}
+
+.activity-detail-description {
+  color: var(--gray-700);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.activity-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.activity-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.activity-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ========== SECTION COMMON ========== */
