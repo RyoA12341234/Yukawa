@@ -5,7 +5,7 @@
 ## 🌐 公開URL
 
 - **本番環境**: https://yukawa-hiroyuki.pages.dev
-- **管理画面**: https://yukawa-hiroyuki.pages.dev/admin/ 📝✨
+- **管理画面**: https://yukawa-hiroyuki.pages.dev/admin/
 - **GitHubリポジトリ**: https://github.com/RyoA12341234/Yukawa
 
 ## 📋 プロジェクト概要
@@ -24,6 +24,41 @@
 - **フォント**: Noto Sans JP
 - **レスポンシブ**: モバイル・タブレット・デスクトップ対応
 
+## 📝 管理画面の使い方
+
+### アクセス方法
+管理画面URL: **https://yukawa-hiroyuki.pages.dev/admin/**
+
+### できること
+1. **TOPICSの追加・編集・削除**
+   - お知らせ、活動報告、政策提言、イベント、メディア掲載
+   - 画像アップロード対応
+   
+2. **活動報告の追加・編集・削除**
+   - 街頭活動、地域懇談会、政策提言、地域イベント、視察、会議
+   - 複数画像アップロード対応
+   
+3. **統計情報の更新**
+   - 地域訪問回数
+   - 住民の声聴取数
+   - 地域イベント参加数
+
+### 更新手順（サンドボックス不要！）
+1. 管理画面 (https://yukawa-hiroyuki.pages.dev/admin/) でコンテンツを編集
+2. 「保存してサイトに反映」ボタンをクリック
+3. `content.json`ファイルが自動的にダウンロードされる
+4. GitHubにアップロード:
+```bash
+cd Yukawa
+cp ~/Downloads/content.json public/data/content.json
+git add public/data/content.json
+git commit -m "活動報告を更新"
+git push origin main
+```
+5. 約1-2分で本番サイトに自動反映！
+
+詳しくは → **[管理画面使い方ガイド](./ADMIN_GUIDE.md)**
+
 ## 📖 主要コンテンツ
 
 ### 1. ヒーロー画像セクション
@@ -31,7 +66,7 @@
 - 名前プレート（神戸市須磨区 / 湯川寛之 / すべての人が輝く須磨区へ）
 
 ### 2. TOPICSセクション
-- 最新の活動報告・お知らせ
+- 最新の活動報告・お知らせ（管理画面から追加可能）
 
 ### 3. 私の想いセクション
 - 湯川寛之の想いと須磨区への決意
@@ -87,10 +122,11 @@
 ### 6. 須磨区レポート
 - 地域の課題と解決策を定期的に発信
 
-### 7. 活動報告
-- 地域訪問回数: 500+
-- 住民の声を聴取: 1,200+
-- 地域イベント参加: 50+
+### 7. 活動報告（管理画面から更新可能）
+- 地域訪問回数: 600+
+- 住民の声を聴取: 1,400+
+- 地域イベント参加: 65+
+- **管理画面で統計情報を更新できます**
 
 ### 8. 湯川寛之のあゆみ
 - プロフィール
@@ -111,6 +147,7 @@
 - **ビルドツール**: Vite
 - **言語**: TypeScript
 - **スタイル**: CSS（カスタム）
+- **管理画面**: バニラJavaScript（フレームワーク不要）
 
 ## 📁 プロジェクト構造
 
@@ -120,12 +157,20 @@ webapp/
 │   ├── index.tsx          # メインアプリケーション
 │   └── renderer.tsx       # HTMLレンダラー
 ├── public/
-│   └── static/
-│       └── edano-structure.css  # スタイルシート
+│   ├── admin/             # 管理画面
+│   │   └── index.html
+│   ├── static/
+│   │   ├── edano-structure.css  # メインスタイルシート
+│   │   ├── admin.css            # 管理画面スタイル
+│   │   └── admin.js             # 管理画面ロジック
+│   └── data/
+│       └── content.json   # コンテンツデータ
 ├── dist/                  # ビルド出力
 ├── wrangler.jsonc         # Cloudflare設定
 ├── package.json           # 依存関係
 ├── tsconfig.json          # TypeScript設定
+├── ADMIN_GUIDE.md         # 管理画面使い方ガイド
+├── EDITING_GUIDE.md       # コード編集ガイド
 └── README.md             # このファイル
 ```
 
@@ -156,13 +201,20 @@ npm run build
 # Cloudflare Pagesへデプロイ
 npm run deploy
 
-# または
+# または手動デプロイ
 npx wrangler pages deploy dist --project-name yukawa-hiroyuki
+
+# または簡単デプロイスクリプト
+./deploy.sh
 ```
 
 ## 🖼️ 画像アップロード機能
 
-すべての画像エリアにアップロード機能を実装しています：
+### 管理画面から（推奨）
+管理画面 (https://yukawa-hiroyuki.pages.dev/admin/) でTOPICSや活動報告に画像を追加できます。
+
+### メインページの画像
+以下の画像エリアに直接アップロード機能を実装しています：
 
 - ヒーロー画像
 - 私の想い画像
@@ -174,32 +226,37 @@ npx wrangler pages deploy dist --project-name yukawa-hiroyuki
 
 ## 📝 更新履歴
 
-### 2024-12-XX
-- **ブラウザベースの管理画面を実装** ✨
-- 活動報告と写真を簡単に追加・管理
-- サンドボックス不要の完全ブラウザ操作
+### 2026-02-08
+- 管理画面実装
+  - TOPICSの追加・編集・削除機能
+  - 活動報告の追加・編集・削除機能
+  - 統計情報の更新機能
+  - 画像アップロード・プレビュー機能
+  - ドラッグ&ドロップ対応
+  - JSONダウンロード機能
+- 管理画面ガイド作成 (ADMIN_GUIDE.md)
+- サンドボックス不要のワークフロー確立
+
+### 2024-12-27
 - 初版リリース
 - 枝野サイト構造を完全再現
 - 国民民主党カラー適用
 - 須磨区基本計画の政策を反映
 - 画像アップロード機能実装
-
-### 管理画面の使い方
-
-**サンドボックス不要で誰でも簡単に更新できます！**
-
-1. https://yukawa-hiroyuki.pages.dev/admin/ にアクセス
-2. ブラウザで活動報告・写真・統計を編集
-3. 「データ出力」タブでJSONをコピー
-4. GitHubで `public/data/content.json` に貼り付け
-
-詳しくは [ADMIN_GUIDE.md](./ADMIN_GUIDE.md) を参照してください。
+- GitHubとCloudflare Pages連携
 
 ### デプロイ情報
 - **プロジェクト名**: yukawa-hiroyuki
 - **本番ブランチ**: main
 - **最終デプロイ日**: 2026-02-08
 - **デプロイURL**: https://yukawa-hiroyuki.pages.dev
+- **管理画面URL**: https://yukawa-hiroyuki.pages.dev/admin/
+
+## 🔧 管理者向けガイド
+
+- **[管理画面使い方ガイド](./ADMIN_GUIDE.md)** - コンテンツの追加・編集方法
+- **[コード編集ガイド](./EDITING_GUIDE.md)** - テキスト・色・サイズの変更方法
+- **[デプロイスクリプト](./deploy.sh)** - ワンコマンドデプロイ
 
 ## 📞 お問い合わせ
 
@@ -207,4 +264,4 @@ npx wrangler pages deploy dist --project-name yukawa-hiroyuki
 
 ---
 
-© 2024 湯川寛之 All Rights Reserved.
+© 2024 湯川寛之 | 国民民主党 神戸市須磨区
