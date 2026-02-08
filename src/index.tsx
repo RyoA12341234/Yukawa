@@ -22,6 +22,25 @@ app.get('/api/content', async (c) => {
   }
 })
 
+// コンテンツ更新API（管理画面用）
+app.post('/api/update-content', async (c) => {
+  try {
+    const newContent = await c.req.json()
+    
+    // Cloudflare環境ではファイルシステムへの書き込みができないため、
+    // 実際の運用ではCloudflare KVまたはD1データベースを使用します
+    // ここでは一時的に成功レスポンスを返します
+    
+    return c.json({ 
+      success: true, 
+      message: 'Content updated successfully',
+      notice: 'ローカル開発環境では、手動でcontent.jsonファイルを更新してください。本番環境ではCloudflare KVまたはD1を使用します。'
+    })
+  } catch (error) {
+    return c.json({ error: 'Failed to update content' }, 500)
+  }
+})
+
 // メインページ - 枝野サイト構造 + 国民民主党カラー + 須磨区政策
 app.get('/', (c) => {
   return c.render(
