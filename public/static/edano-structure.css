@@ -90,8 +90,9 @@ ul {
 }
 
 .party-logo img {
-  height: 40px;
+  height: 50px;
   width: auto;
+  display: block;
 }
 
 .header-nav {
@@ -253,13 +254,14 @@ ul {
 }
 
 .hero-name-plate {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(10px);
   padding: 30px;
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
   border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .hero-location {

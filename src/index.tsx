@@ -15,9 +15,9 @@ app.get('/', (c) => {
           <div class="container header-top-inner">
             <div class="party-logo">
               <img 
-                src="https://new-kokumin.jp/wp-content/themes/dpfp2020/assets/images/common/logo.svg" 
+                src="https://www.genspark.ai/api/files/s/NW2MXMEI" 
                 alt="国民民主党" 
-                height="40"
+                height="50"
               />
             </div>
             <nav class="header-nav">
