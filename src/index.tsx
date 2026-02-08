@@ -1,20 +1,12 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
-import { serveStatic } from 'hono/cloudflare-workers'
 
 const app = new Hono()
 
 app.use(renderer)
 
-// 静的ファイル配信
-app.use('/static/*', serveStatic({ root: './public' }))
-app.use('/data/*', serveStatic({ root: './public' }))
-
-// 管理画面ルート
-app.get('/admin/', (c) => {
-  return c.redirect('/admin/index.html')
-})
-app.use('/admin/*', serveStatic({ root: './' }))
+// 静的ファイルは Cloudflare Pages が自動的に配信します
+// /static/*, /data/*, /admin/* などは dist/ ディレクトリから自動配信されます
 
 // コンテンツAPI
 app.get('/api/content', async (c) => {

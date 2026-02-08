@@ -5,7 +5,18 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
-    build(),
+    build({
+      outputDir: 'dist',
+      emptyOutDir: false,
+      minify: true,
+      external: [],
+      // Cloudflare Pagesのルーティング設定
+      cloudflarePages: {
+        routes: {
+          exclude: ['/static/*', '/data/*', '/admin/*']
+        }
+      }
+    }),
     devServer({
       adapter,
       entry: 'src/index.tsx'
