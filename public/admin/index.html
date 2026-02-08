@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コンテンツ管理画面 - 湯川寛之オフィシャルサイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="/static/admin.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1>コンテンツ管理画面</h1>
+                <p class="admin-subtitle">湯川寛之オフィシャルサイト</p>
+            </div>
+            <div class="admin-actions">
+                <button id="save-btn" class="btn btn-primary">
+                    <i class="icon">💾</i> 保存してサイトに反映
+                </button>
+                <a href="/" class="btn btn-secondary">
+                    <i class="icon">🌐</i> サイトを見る
+                </a>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="topics">
+                    <i class="icon">📰</i> TOPICS
+                </button>
+                <button class="admin-tab" data-tab="activities">
+                    <i class="icon">📸</i> 活動報告
+                </button>
+                <button class="admin-tab" data-tab="stats">
+                    <i class="icon">📊</i> 統計情報
+                </button>
+            </div>
+
+            <!-- TOPICS管理 -->
+            <div id="topics-panel" class="admin-panel active">
+                <div class="panel-header">
+                    <h2>TOPICS管理</h2>
+                    <button id="add-topic-btn" class="btn btn-small btn-primary">
+                        <i class="icon">➕</i> 新しいTOPICSを追加
+                    </button>
+                </div>
+                <div id="topics-list" class="items-list">
+                    <!-- TOPICSアイテムがここに追加される -->
+                </div>
+            </div>
+
+            <!-- 活動報告管理 -->
+            <div id="activities-panel" class="admin-panel">
+                <div class="panel-header">
+                    <h2>活動報告管理</h2>
+                    <button id="add-activity-btn" class="btn btn-small btn-primary">
+                        <i class="icon">➕</i> 新しい活動報告を追加
+                    </button>
+                </div>
+                <div id="activities-list" class="items-list">
+                    <!-- 活動報告アイテムがここに追加される -->
+                </div>
+            </div>
+
+            <!-- 統計情報管理 -->
+            <div id="stats-panel" class="admin-panel">
+                <div class="panel-header">
+                    <h2>統計情報管理</h2>
+                    <p class="panel-description">トップページに表示される数値を編集できます</p>
+                </div>
+                <div class="stats-form">
+                    <div class="form-group">
+                        <label for="stat-visits">地域訪問回数</label>
+                        <input type="number" id="stat-visits" class="form-input" placeholder="500">
+                        <small class="form-help">トップページに表示される地域訪問の回数</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat-voices">住民の声聴取数</label>
+                        <input type="number" id="stat-voices" class="form-input" placeholder="1200">
+                        <small class="form-help">住民から聴取した声の数</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat-events">地域イベント参加数</label>
+                        <input type="number" id="stat-events" class="form-input" placeholder="50">
+                        <small class="form-help">参加した地域イベントの数</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat-updated">最終更新日</label>
+                        <input type="date" id="stat-updated" class="form-input">
+                        <small class="form-help">統計情報の最終更新日</small>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- TOPICSモーダル -->
+        <div id="topic-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="topic-modal-title">TOPICSを追加</h3>
+                    <button class="modal-close" onclick="closeModal('topic-modal')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="topic-date">日付 <span class="required">*</span></label>
+                        <input type="date" id="topic-date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-category">カテゴリ <span class="required">*</span></label>
+                        <select id="topic-category" class="form-input" required>
+                            <option value="">選択してください</option>
+                            <option value="お知らせ">お知らせ</option>
+                            <option value="活動報告">活動報告</option>
+                            <option value="政策提言">政策提言</option>
+                            <option value="イベント">イベント</option>
+                            <option value="メディア掲載">メディア掲載</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-title">タイトル <span class="required">*</span></label>
+                        <input type="text" id="topic-title" class="form-input" placeholder="例: 須磨区防災対策について住民説明会を開催" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-description">説明文</label>
+                        <textarea id="topic-description" class="form-textarea" rows="4" placeholder="TOPICSの詳細を入力してください"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-image">画像をアップロード（任意）</label>
+                        <div class="image-upload-area">
+                            <input type="file" id="topic-image" accept="image/*" style="display: none;">
+                            <label for="topic-image" class="image-upload-label">
+                                <div id="topic-image-preview" class="image-preview">
+                                    <div class="image-placeholder">
+                                        <span class="icon">📷</span>
+                                        <p>画像を選択またはドラッグ&ドロップ</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('topic-modal')">キャンセル</button>
+                    <button id="save-topic-btn" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 活動報告モーダル -->
+        <div id="activity-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="activity-modal-title">活動報告を追加</h3>
+                    <button class="modal-close" onclick="closeModal('activity-modal')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="activity-date">日付 <span class="required">*</span></label>
+                        <input type="date" id="activity-date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-category">カテゴリ <span class="required">*</span></label>
+                        <select id="activity-category" class="form-input" required>
+                            <option value="">選択してください</option>
+                            <option value="街頭活動">街頭活動</option>
+                            <option value="地域懇談会">地域懇談会</option>
+                            <option value="政策提言">政策提言</option>
+                            <option value="地域イベント">地域イベント</option>
+                            <option value="視察">視察</option>
+                            <option value="会議">会議</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-title">タイトル <span class="required">*</span></label>
+                        <input type="text" id="activity-title" class="form-input" placeholder="例: 朝の駅前活動 - 通勤通学の皆様と対話" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="activity-description">活動内容 <span class="required">*</span></label>
+                        <textarea id="activity-description" class="form-textarea" rows="6" placeholder="活動の詳細を入力してください" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>写真を追加（複数可）</label>
+                        <div class="image-upload-area">
+                            <input type="file" id="activity-images" accept="image/*" multiple style="display: none;">
+                            <label for="activity-images" class="image-upload-label">
+                                <div class="image-placeholder">
+                                    <span class="icon">📷</span>
+                                    <p>画像を選択またはドラッグ&ドロップ<br><small>複数選択可能</small></p>
+                                </div>
+                            </label>
+                        </div>
+                        <div id="activity-images-preview" class="images-preview-grid">
+                            <!-- プレビュー画像がここに表示される -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal('activity-modal')">キャンセル</button>
+                    <button id="save-activity-btn" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 保存成功メッセージ -->
+        <div id="success-message" class="success-message">
+            <span class="icon">✅</span>
+            <span class="message">保存しました！サイトに反映されています。</span>
+        </div>
+
+        <!-- ローディング -->
+        <div id="loading" class="loading">
+            <div class="loading-spinner"></div>
+            <p>保存中...</p>
+        </div>
+    </div>
+
+    <script src="/static/admin.js"></script>
+</body>
+</html>

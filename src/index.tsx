@@ -9,6 +9,7 @@ app.use(renderer)
 // 静的ファイル配信
 app.use('/static/*', serveStatic({ root: './public' }))
 app.use('/data/*', serveStatic({ root: './public' }))
+app.use('/admin/*', serveStatic({ root: './' }))
 
 // コンテンツAPI
 app.get('/api/content', async (c) => {
