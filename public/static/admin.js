@@ -277,17 +277,21 @@ async function saveAllContent() {
     showLoading();
 
     try {
-        const response = await fetch('/api/update-content', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(contentData)
-        });
-
-        if (response.ok) {
-            showSuccessMessage();
-        } else {
-            alert('保存に失敗しました。もう一度お試しください。');
-        }
+        // LocalStorageに保存
+        localStorage.setItem('yukawa-content', JSON.stringify(contentData));
+        
+        // JSONファイルとしてダウンロード
+        const blob = new Blob([JSON.stringify(contentData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'content.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showSuccessMessage('変更内容を保存しました。ダウンロードしたcontent.jsonファイルをpublic/data/content.jsonに置き換えて、GitHubにpushしてください。');
     } catch (error) {
         console.error('保存エラー:', error);
         alert('保存中にエラーが発生しました: ' + error.message);
@@ -436,10 +440,11 @@ function hideLoading() {
     document.getElementById('loading').classList.remove('active');
 }
 
-function showSuccessMessage() {
-    const message = document.getElementById('success-message');
-    message.classList.add('active');
+function showSuccessMessage(message = '保存しました！') {
+    const messageEl = document.getElementById('success-message');
+    messageEl.querySelector('.message').textContent = message;
+    messageEl.classList.add('active');
     setTimeout(() => {
-        message.classList.remove('active');
-    }, 3000);
+        messageEl.classList.remove('active');
+    }, 5000);
 }

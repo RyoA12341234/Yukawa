@@ -9,6 +9,11 @@ app.use(renderer)
 // 静的ファイル配信
 app.use('/static/*', serveStatic({ root: './public' }))
 app.use('/data/*', serveStatic({ root: './public' }))
+
+// 管理画面ルート
+app.get('/admin/', (c) => {
+  return c.redirect('/admin/index.html')
+})
 app.use('/admin/*', serveStatic({ root: './' }))
 
 // コンテンツAPI
