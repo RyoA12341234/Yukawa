@@ -5,6 +5,7 @@
 ## 🌐 公開URL
 
 - **本番環境**: https://yukawa-hiroyuki.pages.dev
+- **管理画面**: https://yukawa-hiroyuki.pages.dev/admin/ 📝✨
 - **GitHubリポジトリ**: https://github.com/RyoA12341234/Yukawa
 
 ## 📋 プロジェクト概要
@@ -174,11 +175,25 @@ npx wrangler pages deploy dist --project-name yukawa-hiroyuki
 ## 📝 更新履歴
 
 ### 2024-12-XX
+- **ブラウザベースの管理画面を実装** ✨
+- 活動報告と写真を簡単に追加・管理
+- サンドボックス不要の完全ブラウザ操作
 - 初版リリース
 - 枝野サイト構造を完全再現
 - 国民民主党カラー適用
 - 須磨区基本計画の政策を反映
 - 画像アップロード機能実装
+
+### 管理画面の使い方
+
+**サンドボックス不要で誰でも簡単に更新できます！**
+
+1. https://yukawa-hiroyuki.pages.dev/admin/ にアクセス
+2. ブラウザで活動報告・写真・統計を編集
+3. 「データ出力」タブでJSONをコピー
+4. GitHubで `public/data/content.json` に貼り付け
+
+詳しくは [ADMIN_GUIDE.md](./ADMIN_GUIDE.md) を参照してください。
 
 ### デプロイ情報
 - **プロジェクト名**: yukawa-hiroyuki
