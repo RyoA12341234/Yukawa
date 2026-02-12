@@ -420,10 +420,20 @@ function deleteActivity(index) {
 // 統計
 function renderStats() {
     const stats = contentData.stats || {};
+    // 統計情報タブのフィールド
     document.getElementById('stat-visits').value = stats.visits || 600;
     document.getElementById('stat-voices').value = stats.voices || 1400;
     document.getElementById('stat-events').value = stats.events || 65;
     document.getElementById('stat-updated').value = stats.updated || new Date().toISOString().split('T')[0];
+    
+    // 活動報告タブの統計フィールド（同じ値を設定）
+    const activityStatVisits = document.getElementById('activity-stat-visits');
+    const activityStatVoices = document.getElementById('activity-stat-voices');
+    const activityStatEvents = document.getElementById('activity-stat-events');
+    
+    if (activityStatVisits) activityStatVisits.value = stats.visits || 600;
+    if (activityStatVoices) activityStatVoices.value = stats.voices || 1400;
+    if (activityStatEvents) activityStatEvents.value = stats.events || 65;
 }
 
 // 編集保存
@@ -545,11 +555,15 @@ async function saveAllContent() {
         image: await getImageData('profile-image') || contentData.profile?.image
     };
 
-    // 統計
+    // 統計（活動報告タブまたは統計情報タブのどちらからでも保存可能）
+    const activityStatVisits = document.getElementById('activity-stat-visits');
+    const activityStatVoices = document.getElementById('activity-stat-voices');
+    const activityStatEvents = document.getElementById('activity-stat-events');
+    
     contentData.stats = {
-        visits: parseInt(document.getElementById('stat-visits').value) || 600,
-        voices: parseInt(document.getElementById('stat-voices').value) || 1400,
-        events: parseInt(document.getElementById('stat-events').value) || 65,
+        visits: parseInt(activityStatVisits?.value || document.getElementById('stat-visits').value) || 600,
+        voices: parseInt(activityStatVoices?.value || document.getElementById('stat-voices').value) || 1400,
+        events: parseInt(activityStatEvents?.value || document.getElementById('stat-events').value) || 65,
         updated: document.getElementById('stat-updated').value
     };
 
