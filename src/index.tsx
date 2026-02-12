@@ -1,39 +1,53 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
 
-const app = new Hono()
+type Bindings = {
+  CONTENT_KV: KVNamespace
+}
+
+const app = new Hono<{ Bindings: Bindings }>()
 
 app.use(renderer)
 
 // 静的ファイルは Cloudflare Pages が自動的に配信します
 // /static/*, /data/*, /admin/* などは dist/ ディレクトリから自動配信されます
 
-// コンテンツAPI
+// コンテンツAPI - KVから読み込み
 app.get('/api/content', async (c) => {
   try {
-    const response = await fetch('https://raw.githubusercontent.com/RyoA12341234/Yukawa/main/public/data/content.json')
-    const data = await response.json()
-    return c.json(data)
+    // KVから読み込み
+    const content = await c.env.CONTENT_KV.get('content', 'json')
+    
+    // KVにデータがない場合は、デフォルトのJSONファイルから読み込み
+    if (!content) {
+      const response = await fetch(new URL('/data/content.json', c.req.url).href)
+      const defaultContent = await response.json()
+      // 初回アクセス時にKVに保存
+      await c.env.CONTENT_KV.put('content', JSON.stringify(defaultContent))
+      return c.json(defaultContent)
+    }
+    
+    return c.json(content)
   } catch (error) {
+    console.error('Content load error:', error)
     return c.json({ error: 'Failed to load content' }, 500)
   }
 })
 
-// コンテンツ更新API（管理画面用）
+// コンテンツ更新API - KVに保存
 app.post('/api/update-content', async (c) => {
   try {
     const newContent = await c.req.json()
     
-    // Cloudflare環境ではファイルシステムへの書き込みができないため、
-    // 実際の運用ではCloudflare KVまたはD1データベースを使用します
-    // ここでは一時的に成功レスポンスを返します
+    // KVに保存
+    await c.env.CONTENT_KV.put('content', JSON.stringify(newContent))
     
     return c.json({ 
       success: true, 
-      message: 'Content updated successfully',
-      notice: 'ローカル開発環境では、手動でcontent.jsonファイルを更新してください。本番環境ではCloudflare KVまたはD1を使用します。'
+      message: 'コンテンツを保存しました。すぐにサイトに反映されます。'
     })
   } catch (error) {
+    console.error('Content update error:', error)
     return c.json({ error: 'Failed to update content' }, 500)
   }
 })

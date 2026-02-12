@@ -553,22 +553,22 @@ async function saveAllContent() {
         updated: document.getElementById('stat-updated').value
     };
 
-    // ダウンロード
+    // APIで保存
     showLoading();
     try {
-        localStorage.setItem('yukawa-content', JSON.stringify(contentData));
+        const response = await fetch('/api/update-content', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(contentData)
+        });
+
+        const result = await response.json();
         
-        const blob = new Blob([JSON.stringify(contentData, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'content.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        showSuccessMessage('変更内容を保存しました。ダウンロードしたcontent.jsonファイルをpublic/data/content.jsonに置き換えて、GitHubにpushしてください。');
+        if (response.ok) {
+            showSuccessMessage('保存しました！すぐにサイトに反映されます。');
+        } else {
+            alert('保存に失敗しました: ' + (result.error || '不明なエラー'));
+        }
     } catch (error) {
         alert('保存エラー: ' + error.message);
     } finally {
