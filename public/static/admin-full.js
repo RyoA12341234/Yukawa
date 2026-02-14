@@ -570,10 +570,22 @@ async function saveAllContent() {
     // APIで保存
     showLoading();
     try {
+        // データサイズをチェック
+        const jsonString = JSON.stringify(contentData);
+        const sizeInKB = (jsonString.length * 0.75) / 1024;
+        
+        console.log(`保存データサイズ: ${sizeInKB.toFixed(2)} KB`);
+        
+        if (sizeInKB > 900) {
+            alert(`⚠️ データサイズが大きすぎます (${sizeInKB.toFixed(0)} KB)\n\n画像が多すぎるか、画像サイズが大きすぎる可能性があります。\n\n対処方法:\n1. 不要な画像を削除\n2. 画像枚数を減らす\n3. 画像の解像度を下げる`);
+            hideLoading();
+            return;
+        }
+        
         const response = await fetch('/api/update-content', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(contentData)
+            body: jsonString
         });
 
         const result = await response.json();
@@ -584,6 +596,7 @@ async function saveAllContent() {
             alert('保存に失敗しました: ' + (result.error || '不明なエラー'));
         }
     } catch (error) {
+        console.error('保存エラー詳細:', error);
         alert('保存エラー: ' + error.message);
     } finally {
         hideLoading();
@@ -613,7 +626,47 @@ async function getImageData(inputId) {
 function fileToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                // 画像を圧縮
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                
+                // 最大サイズを1200pxに制限
+                const maxSize = 1200;
+                if (width > maxSize || height > maxSize) {
+                    if (width > height) {
+                        height = (height / width) * maxSize;
+                        width = maxSize;
+                    } else {
+                        width = (width / height) * maxSize;
+                        height = maxSize;
+                    }
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                // 品質を0.7に設定して圧縮
+                const compressed = canvas.toDataURL('image/jpeg', 0.7);
+                
+                // サイズチェック（800KB以下に制限）
+                const sizeInKB = (compressed.length * 0.75) / 1024;
+                if (sizeInKB > 800) {
+                    // さらに圧縮
+                    const veryCompressed = canvas.toDataURL('image/jpeg', 0.5);
+                    resolve(veryCompressed);
+                } else {
+                    resolve(compressed);
+                }
+            };
+            img.onerror = reject;
+            img.src = e.target.result;
+        };
         reader.onerror = reject;
         reader.readAsDataURL(file);
     });
