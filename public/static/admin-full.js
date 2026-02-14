@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // コンテンツ読み込み
 async function loadContent() {
     try {
-        const response = await fetch('/data/content.json');
+        const response = await fetch('/api/content');
         contentData = await response.json();
     } catch (error) {
         console.error('読み込みエラー:', error);
