@@ -620,7 +620,7 @@ app.get('/', (c) => {
         // コンテンツ読み込み
         async function loadContent() {
           try {
-            const response = await fetch('https://raw.githubusercontent.com/RyoA12341234/Yukawa/main/public/data/content.json');
+            const response = await fetch('/api/content');
             const data = await response.json();
             
             // TOPICSを表示
