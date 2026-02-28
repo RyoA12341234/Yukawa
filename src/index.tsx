@@ -134,10 +134,6 @@ app.get('/', (c) => {
       {/* ========== HERO IMAGE SECTION ========== */}
       <section id="top" class="hero-image-section">
         <div class="hero-image-wrapper">
-          <input type="file" id="hero-image-upload" accept="image/*" style="display:none;" />
-          <label for="hero-image-upload" class="hero-upload-label">
-            ヒーロー画像をアップロード
-          </label>
           <div class="hero-overlay">
             <div class="hero-name-plate">
               <div class="hero-location">神戸市須磨区</div>
@@ -178,10 +174,6 @@ app.get('/', (c) => {
           </div>
           <div class="vision-content">
             <div class="vision-image">
-              <input type="file" id="vision-image-upload" accept="image/*" style="display:none;" />
-              <label for="vision-image-upload" class="image-upload-label">
-                画像をアップロード
-              </label>
             </div>
             <div class="vision-text">
               <p class="vision-lead">
@@ -218,10 +210,6 @@ app.get('/', (c) => {
             <div class="policy-content">
               <h3 class="policy-title">安全で安心なまちづくり</h3>
               <div class="policy-image">
-                <input type="file" id="policy1-image-upload" accept="image/*" style="display:none;" />
-                <label for="policy1-image-upload" class="image-upload-label">
-                  画像をアップロード
-                </label>
               </div>
               <div class="policy-description">
                 <p class="policy-lead">
@@ -250,10 +238,6 @@ app.get('/', (c) => {
             <div class="policy-content">
               <h3 class="policy-title">子どもから高齢者まで健やかに暮らせるまちづくり</h3>
               <div class="policy-image">
-                <input type="file" id="policy2-image-upload" accept="image/*" style="display:none;" />
-                <label for="policy2-image-upload" class="image-upload-label">
-                  画像をアップロード
-                </label>
               </div>
               <div class="policy-description">
                 <p class="policy-lead">
@@ -284,10 +268,6 @@ app.get('/', (c) => {
             <div class="policy-content">
               <h3 class="policy-title">まちの魅力を高め、人を呼び込むまちづくり</h3>
               <div class="policy-image">
-                <input type="file" id="policy3-image-upload" accept="image/*" style="display:none;" />
-                <label for="policy3-image-upload" class="image-upload-label">
-                  画像をアップロード
-                </label>
               </div>
               <div class="policy-description">
                 <p class="policy-lead">
@@ -316,10 +296,6 @@ app.get('/', (c) => {
             <div class="policy-content">
               <h3 class="policy-title">誰もがいきいきと活躍し、交流するまちづくり</h3>
               <div class="policy-image">
-                <input type="file" id="policy4-image-upload" accept="image/*" style="display:none;" />
-                <label for="policy4-image-upload" class="image-upload-label">
-                  画像をアップロード
-                </label>
               </div>
               <div class="policy-description">
                 <p class="policy-lead">
@@ -348,10 +324,6 @@ app.get('/', (c) => {
             <div class="policy-content">
               <h3 class="policy-title">豊かな自然・歴史・文化を次世代へつなぐまちづくり</h3>
               <div class="policy-image">
-                <input type="file" id="policy5-image-upload" accept="image/*" style="display:none;" />
-                <label for="policy5-image-upload" class="image-upload-label">
-                  画像をアップロード
-                </label>
               </div>
               <div class="policy-description">
                 <p class="policy-lead">
@@ -447,10 +419,6 @@ app.get('/', (c) => {
           </div>
           <div class="report-content">
             <div class="report-image">
-              <input type="file" id="report-image-upload" accept="image/*" style="display:none;" />
-              <label for="report-image-upload" class="image-upload-label">
-                レポート画像をアップロード
-              </label>
             </div>
             <div class="report-text">
               <p>
@@ -552,10 +520,6 @@ app.get('/', (c) => {
           </div>
           <div class="profile-content">
             <div class="profile-image">
-              <input type="file" id="profile-image-upload" accept="image/*" style="display:none;" />
-              <label for="profile-image-upload" class="image-upload-label">
-                プロフィール画像をアップロード
-              </label>
             </div>
             <div class="profile-text">
               <div class="profile-info">
@@ -763,47 +727,6 @@ app.get('/', (c) => {
             }
           });
         });
-
-        // 画像アップロード機能
-        function setupImageUpload(inputId, targetClass) {
-          const input = document.getElementById(inputId);
-          if (!input) return;
-          
-          input.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-              const reader = new FileReader();
-              reader.onload = function(event) {
-                let target;
-                if (inputId === 'hero-image-upload') {
-                  target = document.querySelector('.hero-image-wrapper');
-                } else {
-                  target = input.closest('.' + targetClass) || input.parentElement;
-                }
-                
-                if (target) {
-                  target.style.backgroundImage = 'url(' + event.target.result + ')';
-                  target.style.backgroundSize = 'cover';
-                  target.style.backgroundPosition = 'center';
-                  const label = input.nextElementSibling;
-                  if (label) label.style.display = 'none';
-                }
-              };
-              reader.readAsDataURL(file);
-            }
-          });
-        }
-
-        // 各画像アップロードの設定
-        setupImageUpload('hero-image-upload', 'hero-image-wrapper');
-        setupImageUpload('vision-image-upload', 'vision-image');
-        setupImageUpload('policy1-image-upload', 'policy-image');
-        setupImageUpload('policy2-image-upload', 'policy-image');
-        setupImageUpload('policy3-image-upload', 'policy-image');
-        setupImageUpload('policy4-image-upload', 'policy-image');
-        setupImageUpload('policy5-image-upload', 'policy-image');
-        setupImageUpload('report-image-upload', 'report-image');
-        setupImageUpload('profile-image-upload', 'profile-image');
       `}} />
     </div>
   )
