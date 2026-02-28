@@ -620,6 +620,29 @@ app.get('/', (c) => {
             const response = await fetch('/api/content');
             const data = await response.json();
             
+            // ヒーロー情報を更新
+            if (data.hero) {
+              const heroName = document.querySelector('.hero-name');
+              const heroKana = document.querySelector('.hero-kana');
+              const heroCatchphrase = document.querySelector('.hero-catchphrase');
+              const heroLocation = document.querySelector('.hero-location');
+              
+              if (heroName) heroName.textContent = data.hero.name || '湯川寛之';
+              if (heroKana) heroKana.textContent = data.hero.nameKana || 'ゆかわ ひろゆき';
+              if (heroCatchphrase) heroCatchphrase.textContent = data.hero.slogan || 'すべての人が輝く須磨区へ';
+              if (heroLocation) heroLocation.textContent = data.hero.area || '神戸市須磨区';
+              
+              // ヒーロー画像を更新
+              if (data.hero.image) {
+                const heroWrapper = document.querySelector('.hero-image-wrapper');
+                if (heroWrapper) {
+                  heroWrapper.style.backgroundImage = `url(${data.hero.image})`;
+                  heroWrapper.style.backgroundSize = 'cover';
+                  heroWrapper.style.backgroundPosition = 'center';
+                }
+              }
+            }
+            
             // TOPICSを表示
             renderTopics(data.topics);
             
@@ -628,6 +651,11 @@ app.get('/', (c) => {
             
             // 統計情報を更新
             updateStats(data.stats);
+            
+            console.log('[トップページ] コンテンツ読み込み完了:', {
+              hero: data.hero?.name,
+              stats: data.stats
+            });
           } catch (error) {
             console.error('コンテンツの読み込みに失敗しました:', error);
           }
