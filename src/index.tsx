@@ -704,12 +704,17 @@ app.get('/', (c) => {
             
             // 応援セクションのリンクを更新
             if (data.support) {
+              console.log('[応援セクション] データを取得:', data.support);
+              
               // 応援・寄付
               if (data.support.donation) {
                 const donationText = document.querySelector('.support-donation-text');
                 const donationLink = document.querySelector('.support-donation-link');
                 if (donationText && data.support.donation.text) donationText.textContent = data.support.donation.text;
-                if (donationLink && data.support.donation.url) donationLink.href = data.support.donation.url;
+                if (donationLink && data.support.donation.url) {
+                  donationLink.href = data.support.donation.url;
+                  console.log('[応援セクション] 寄付リンク更新:', data.support.donation.url);
+                }
               }
               
               // ボランティア
