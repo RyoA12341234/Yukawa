@@ -479,15 +479,15 @@ app.get('/', (c) => {
           </div>
           <div class="stats-grid">
             <div class="stat-card">
-              <div class="stat-number">500+</div>
+              <div class="stat-number" id="stat-visits">読込中...</div>
               <div class="stat-label">地域訪問回数</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">1,200+</div>
+              <div class="stat-number" id="stat-voices">読込中...</div>
               <div class="stat-label">住民の声を聴取</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">50+</div>
+              <div class="stat-number" id="stat-events">読込中...</div>
               <div class="stat-label">地域イベント参加</div>
             </div>
           </div>
@@ -713,12 +713,16 @@ app.get('/', (c) => {
         function updateStats(stats) {
           if (!stats) return;
           
-          const statCards = document.querySelectorAll('.stat-card');
-          if (statCards.length >= 3) {
-            statCards[0].querySelector('.stat-number').textContent = stats.visits + '+';
-            statCards[1].querySelector('.stat-number').textContent = stats.voices + '+';
-            statCards[2].querySelector('.stat-number').textContent = stats.events + '+';
-          }
+          // IDで直接要素を取得して更新
+          const visitsEl = document.getElementById('stat-visits');
+          const voicesEl = document.getElementById('stat-voices');
+          const eventsEl = document.getElementById('stat-events');
+          
+          if (visitsEl) visitsEl.textContent = stats.visits + '+';
+          if (voicesEl) voicesEl.textContent = stats.voices + '+';
+          if (eventsEl) eventsEl.textContent = stats.events + '+';
+          
+          console.log('[トップページ] 統計情報を更新しました:', stats);
         }
         
         // 日付フォーマット
