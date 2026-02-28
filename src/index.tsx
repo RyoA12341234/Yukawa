@@ -636,7 +636,7 @@ app.get('/', (c) => {
               if (data.hero.image) {
                 const heroWrapper = document.querySelector('.hero-image-wrapper');
                 if (heroWrapper) {
-                  heroWrapper.style.backgroundImage = `url(${data.hero.image})`;
+                  heroWrapper.style.backgroundImage = 'url(' + data.hero.image + ')';
                   heroWrapper.style.backgroundSize = 'cover';
                   heroWrapper.style.backgroundPosition = 'center';
                 }
