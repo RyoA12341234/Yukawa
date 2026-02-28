@@ -648,7 +648,8 @@ app.get('/', (c) => {
               const visionImg = document.querySelector('.vision-image');
               if (visionImg) {
                 visionImg.style.backgroundImage = 'url(' + data.vision.image + ')';
-                visionImg.style.backgroundSize = 'cover';
+                visionImg.style.backgroundSize = 'contain';
+                visionImg.style.backgroundRepeat = 'no-repeat';
                 visionImg.style.backgroundPosition = 'center';
               }
             }
@@ -695,6 +696,11 @@ app.get('/', (c) => {
             
             // 統計情報を更新
             updateStats(data.stats);
+            
+            // 10の重点プロジェクトを更新
+            if (data.projects && Array.isArray(data.projects)) {
+              renderProjects(data.projects);
+            }
             
             console.log('[トップページ] コンテンツ読み込み完了:', {
               hero: data.hero?.name,
@@ -743,6 +749,20 @@ app.get('/', (c) => {
               \` : ''}
             </article>
           \`).join('');
+        }
+        
+        // 10の重点プロジェクト表示
+        function renderProjects(projects) {
+          const grid = document.querySelector('.projects-grid');
+          if (!grid || !projects) return;
+          
+          grid.innerHTML = projects.map(function(project) {
+            return '<article class="project-item">' +
+              '<div class="project-number">' + project.id + '</div>' +
+              '<h3 class="project-title">' + project.title + '</h3>' +
+              '<p class="project-desc">' + project.description + '</p>' +
+              '</article>';
+          }).join('');
         }
         
         // 統計情報更新
