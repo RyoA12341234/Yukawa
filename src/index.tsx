@@ -643,6 +643,50 @@ app.get('/', (c) => {
               }
             }
             
+            // 私の想い画像を更新
+            if (data.vision && data.vision.image) {
+              const visionImg = document.querySelector('.vision-image');
+              if (visionImg) {
+                visionImg.style.backgroundImage = 'url(' + data.vision.image + ')';
+                visionImg.style.backgroundSize = 'cover';
+                visionImg.style.backgroundPosition = 'center';
+              }
+            }
+            
+            // 政策画像を更新
+            if (data.policies && Array.isArray(data.policies)) {
+              data.policies.forEach(function(policy, index) {
+                if (policy.image) {
+                  const policyImg = document.querySelectorAll('.policy-image')[index];
+                  if (policyImg) {
+                    policyImg.style.backgroundImage = 'url(' + policy.image + ')';
+                    policyImg.style.backgroundSize = 'cover';
+                    policyImg.style.backgroundPosition = 'center';
+                  }
+                }
+              });
+            }
+            
+            // 須磨区レポート画像を更新
+            if (data.report && data.report.image) {
+              const reportImg = document.querySelector('.report-image');
+              if (reportImg) {
+                reportImg.style.backgroundImage = 'url(' + data.report.image + ')';
+                reportImg.style.backgroundSize = 'cover';
+                reportImg.style.backgroundPosition = 'center';
+              }
+            }
+            
+            // プロフィール画像を更新
+            if (data.profile && data.profile.image) {
+              const profileImg = document.querySelector('.profile-image');
+              if (profileImg) {
+                profileImg.style.backgroundImage = 'url(' + data.profile.image + ')';
+                profileImg.style.backgroundSize = 'cover';
+                profileImg.style.backgroundPosition = 'center';
+              }
+            }
+            
             // TOPICSを表示
             renderTopics(data.topics);
             
