@@ -36,6 +36,7 @@
                 <button class="admin-tab" data-tab="reports"><i class="icon">📄</i> 須磨区レポート</button>
                 <button class="admin-tab" data-tab="topics"><i class="icon">📰</i> TOPICS</button>
                 <button class="admin-tab" data-tab="activities"><i class="icon">📸</i> 活動報告</button>
+                <button class="admin-tab" data-tab="support"><i class="icon">💝</i> 応援セクション</button>
                 <button class="admin-tab" data-tab="stats"><i class="icon">📊</i> 統計情報</button>
             </div>
 
@@ -263,6 +264,66 @@
                     <div class="form-group">
                         <label for="stat-updated">最終更新日</label>
                         <input type="date" id="stat-updated" class="form-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 応援セクション管理 -->
+            <div id="support-panel" class="admin-panel">
+                <div class="panel-header">
+                    <h2>応援セクション管理</h2>
+                    <p class="panel-description">応援・寄付、ボランティア、メルマガ、SNSのリンクと説明文を編集</p>
+                </div>
+                <div class="stats-form">
+                    <h3 style="margin-top: 0; color: #1976D2;">💝 応援・寄付</h3>
+                    <div class="form-group">
+                        <label for="support-donation-text">説明文</label>
+                        <input type="text" id="support-donation-text" class="form-input" placeholder="活動へのご支援をお願いします">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-donation-url">リンクURL</label>
+                        <input type="url" id="support-donation-url" class="form-input" placeholder="https://example.com/donation">
+                        <small style="color: #666;">詳細ページのURLや外部決済サービスのURLを入力</small>
+                    </div>
+
+                    <h3 style="margin-top: 30px; color: #1976D2;">🤝 ボランティア</h3>
+                    <div class="form-group">
+                        <label for="support-volunteer-text">説明文</label>
+                        <input type="text" id="support-volunteer-text" class="form-input" placeholder="一緒に活動しませんか">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-volunteer-url">リンクURL</label>
+                        <input type="url" id="support-volunteer-url" class="form-input" placeholder="https://example.com/volunteer">
+                        <small style="color: #666;">ボランティア募集ページやGoogleフォームのURLを入力</small>
+                    </div>
+
+                    <h3 style="margin-top: 30px; color: #1976D2;">📧 メールマガジン</h3>
+                    <div class="form-group">
+                        <label for="support-newsletter-text">説明文</label>
+                        <input type="text" id="support-newsletter-text" class="form-input" placeholder="最新情報をお届けします">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-newsletter-url">リンクURL</label>
+                        <input type="url" id="support-newsletter-url" class="form-input" placeholder="https://example.com/newsletter">
+                        <small style="color: #666;">メルマガ登録ページやGoogleフォームのURLを入力</small>
+                    </div>
+
+                    <h3 style="margin-top: 30px; color: #1976D2;">📱 SNSフォロー</h3>
+                    <div class="form-group">
+                        <label for="support-sns-text">説明文</label>
+                        <input type="text" id="support-sns-text" class="form-input" placeholder="日々の活動を発信中">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-sns-x">X (旧Twitter) URL</label>
+                        <input type="url" id="support-sns-x" class="form-input" placeholder="https://x.com/your_account">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-sns-facebook">Facebook URL</label>
+                        <input type="url" id="support-sns-facebook" class="form-input" placeholder="https://facebook.com/your_page">
+                    </div>
+                    <div class="form-group">
+                        <label for="support-sns-instagram">Instagram URL</label>
+                        <input type="url" id="support-sns-instagram" class="form-input" placeholder="https://instagram.com/your_account">
                     </div>
                 </div>
             </div>

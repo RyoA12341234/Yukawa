@@ -559,29 +559,29 @@ app.get('/', (c) => {
             <div class="support-card">
               <div class="support-icon">💝</div>
               <h3>応援・寄付</h3>
-              <p>活動へのご支援をお願いします</p>
-              <a href="#" class="btn-primary">詳しく見る</a>
+              <p class="support-donation-text">活動へのご支援をお願いします</p>
+              <a href="#" class="btn-primary support-donation-link">詳しく見る</a>
             </div>
             <div class="support-card">
               <div class="support-icon">🤝</div>
               <h3>ボランティア</h3>
-              <p>一緒に活動しませんか</p>
-              <a href="#" class="btn-primary">参加する</a>
+              <p class="support-volunteer-text">一緒に活動しませんか</p>
+              <a href="#" class="btn-primary support-volunteer-link">参加する</a>
             </div>
             <div class="support-card">
               <div class="support-icon">📧</div>
               <h3>メールマガジン</h3>
-              <p>最新情報をお届けします</p>
-              <a href="#" class="btn-primary">登録する</a>
+              <p class="support-newsletter-text">最新情報をお届けします</p>
+              <a href="#" class="btn-primary support-newsletter-link">登録する</a>
             </div>
             <div class="support-card">
               <div class="support-icon">📱</div>
               <h3>SNSフォロー</h3>
-              <p>日々の活動を発信中</p>
+              <p class="support-sns-text">日々の活動を発信中</p>
               <div class="sns-links">
-                <a href="#" aria-label="X">X</a>
-                <a href="#" aria-label="Facebook">FB</a>
-                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" class="support-sns-x" aria-label="X" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="#" class="support-sns-facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer">FB</a>
+                <a href="#" class="support-sns-instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer">IG</a>
               </div>
             </div>
           </div>
@@ -700,6 +700,48 @@ app.get('/', (c) => {
             // 10の重点プロジェクトを更新
             if (data.projects && Array.isArray(data.projects)) {
               renderProjects(data.projects);
+            }
+            
+            // 応援セクションのリンクを更新
+            if (data.support) {
+              // 応援・寄付
+              if (data.support.donation) {
+                const donationText = document.querySelector('.support-donation-text');
+                const donationLink = document.querySelector('.support-donation-link');
+                if (donationText && data.support.donation.text) donationText.textContent = data.support.donation.text;
+                if (donationLink && data.support.donation.url) donationLink.href = data.support.donation.url;
+              }
+              
+              // ボランティア
+              if (data.support.volunteer) {
+                const volunteerText = document.querySelector('.support-volunteer-text');
+                const volunteerLink = document.querySelector('.support-volunteer-link');
+                if (volunteerText && data.support.volunteer.text) volunteerText.textContent = data.support.volunteer.text;
+                if (volunteerLink && data.support.volunteer.url) volunteerLink.href = data.support.volunteer.url;
+              }
+              
+              // メールマガジン
+              if (data.support.newsletter) {
+                const newsletterText = document.querySelector('.support-newsletter-text');
+                const newsletterLink = document.querySelector('.support-newsletter-link');
+                if (newsletterText && data.support.newsletter.text) newsletterText.textContent = data.support.newsletter.text;
+                if (newsletterLink && data.support.newsletter.url) newsletterLink.href = data.support.newsletter.url;
+              }
+              
+              // SNS
+              if (data.support.sns) {
+                const snsText = document.querySelector('.support-sns-text');
+                if (snsText && data.support.sns.text) snsText.textContent = data.support.sns.text;
+                
+                // SNSリンク
+                const xLink = document.querySelector('.support-sns-x');
+                const facebookLink = document.querySelector('.support-sns-facebook');
+                const instagramLink = document.querySelector('.support-sns-instagram');
+                
+                if (xLink && data.support.sns.x) xLink.href = data.support.sns.x;
+                if (facebookLink && data.support.sns.facebook) facebookLink.href = data.support.sns.facebook;
+                if (instagramLink && data.support.sns.instagram) instagramLink.href = data.support.sns.instagram;
+              }
             }
             
             console.log('[トップページ] コンテンツ読み込み完了:', {

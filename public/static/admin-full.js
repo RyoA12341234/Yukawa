@@ -62,6 +62,7 @@ function renderAllSections() {
     renderReports();
     renderTopics();
     renderActivities();
+    renderSupport();
     renderStats();
 }
 
@@ -445,6 +446,29 @@ function renderStats() {
     if (activityStatEvents) activityStatEvents.value = stats.events || 65;
 }
 
+// 応援セクション
+function renderSupport() {
+    const support = contentData.support || {};
+    
+    // 応援・寄付
+    document.getElementById('support-donation-text').value = support.donation?.text || '活動へのご支援をお願いします';
+    document.getElementById('support-donation-url').value = support.donation?.url || '';
+    
+    // ボランティア
+    document.getElementById('support-volunteer-text').value = support.volunteer?.text || '一緒に活動しませんか';
+    document.getElementById('support-volunteer-url').value = support.volunteer?.url || '';
+    
+    // メールマガジン
+    document.getElementById('support-newsletter-text').value = support.newsletter?.text || '最新情報をお届けします';
+    document.getElementById('support-newsletter-url').value = support.newsletter?.url || '';
+    
+    // SNS
+    document.getElementById('support-sns-text').value = support.sns?.text || '日々の活動を発信中';
+    document.getElementById('support-sns-x').value = support.sns?.x || '';
+    document.getElementById('support-sns-facebook').value = support.sns?.facebook || '';
+    document.getElementById('support-sns-instagram').value = support.sns?.instagram || '';
+}
+
 // 編集保存
 function saveEdit() {
     const type = editingItem.type;
@@ -574,6 +598,28 @@ async function saveAllContent() {
         voices: parseInt(activityStatVoices?.value || document.getElementById('stat-voices').value) || 1400,
         events: parseInt(activityStatEvents?.value || document.getElementById('stat-events').value) || 65,
         updated: document.getElementById('stat-updated').value
+    };
+
+    // 応援セクション
+    contentData.support = {
+        donation: {
+            text: document.getElementById('support-donation-text').value,
+            url: document.getElementById('support-donation-url').value
+        },
+        volunteer: {
+            text: document.getElementById('support-volunteer-text').value,
+            url: document.getElementById('support-volunteer-url').value
+        },
+        newsletter: {
+            text: document.getElementById('support-newsletter-text').value,
+            url: document.getElementById('support-newsletter-url').value
+        },
+        sns: {
+            text: document.getElementById('support-sns-text').value,
+            x: document.getElementById('support-sns-x').value,
+            facebook: document.getElementById('support-sns-facebook').value,
+            instagram: document.getElementById('support-sns-instagram').value
+        }
     };
 
     // APIで保存
