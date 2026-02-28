@@ -15,40 +15,73 @@ app.use(renderer)
 // コンテンツAPI - KVから読み込み
 app.get('/api/content', async (c) => {
   try {
+    // KVが利用可能かチェック
+    if (!c.env.CONTENT_KV) {
+      console.error('[API] CONTENT_KV binding not found! Falling back to static JSON')
+      const response = await fetch(new URL('/data/content.json', c.req.url).href)
+      return c.json(await response.json())
+    }
+    
     // KVから読み込み
     const content = await c.env.CONTENT_KV.get('content', 'json')
     
     // KVにデータがない場合は、デフォルトのJSONファイルから読み込み
     if (!content) {
+      console.log('[API] KV is empty, loading from static JSON')
       const response = await fetch(new URL('/data/content.json', c.req.url).href)
       const defaultContent = await response.json()
       // 初回アクセス時にKVに保存
-      await c.env.CONTENT_KV.put('content', JSON.stringify(defaultContent))
+      try {
+        await c.env.CONTENT_KV.put('content', JSON.stringify(defaultContent))
+        console.log('[API] Initialized KV with default content')
+      } catch (kvError) {
+        console.error('[API] Failed to initialize KV:', kvError)
+      }
       return c.json(defaultContent)
     }
     
+    console.log('[API] Loaded content from KV successfully')
     return c.json(content)
   } catch (error) {
-    console.error('Content load error:', error)
-    return c.json({ error: 'Failed to load content' }, 500)
+    console.error('[API] Content load error:', error)
+    // エラー時は静的JSONにフォールバック
+    try {
+      const response = await fetch(new URL('/data/content.json', c.req.url).href)
+      return c.json(await response.json())
+    } catch (fallbackError) {
+      return c.json({ error: 'Failed to load content' }, 500)
+    }
   }
 })
 
 // コンテンツ更新API - KVに保存
 app.post('/api/update-content', async (c) => {
   try {
+    // KVが利用可能かチェック
+    if (!c.env.CONTENT_KV) {
+      console.error('[API] CONTENT_KV binding not found!')
+      return c.json({ 
+        success: false, 
+        error: 'KV storage is not configured. Please contact administrator.'
+      }, 500)
+    }
+    
     const newContent = await c.req.json()
     
     // KVに保存
     await c.env.CONTENT_KV.put('content', JSON.stringify(newContent))
+    console.log('[API] Content saved to KV successfully')
     
     return c.json({ 
       success: true, 
       message: 'コンテンツを保存しました。すぐにサイトに反映されます。'
     })
   } catch (error) {
-    console.error('Content update error:', error)
-    return c.json({ error: 'Failed to update content' }, 500)
+    console.error('[API] Content update error:', error)
+    return c.json({ 
+      success: false,
+      error: 'Failed to update content: ' + error.message 
+    }, 500)
   }
 })
 

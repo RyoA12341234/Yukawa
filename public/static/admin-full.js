@@ -13,10 +13,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 // コンテンツ読み込み
 async function loadContent() {
     try {
+        console.log('[管理画面] データ読み込み開始...');
         const response = await fetch('/api/content');
         contentData = await response.json();
+        console.log('[管理画面] データ読み込み成功:', contentData);
     } catch (error) {
-        console.error('読み込みエラー:', error);
+        console.error('[管理画面] 読み込みエラー:', error);
         contentData = { hero: {}, vision: {}, profile: {}, policies: [], projects: [], reports: [], topics: [], activities: [], stats: {} };
     }
 }
@@ -66,7 +68,14 @@ function renderAllSections() {
 // ヒーローセクション
 function renderHero() {
     const hero = contentData.hero || {};
-    document.getElementById('hero-name').value = hero.name || '';
+    console.log('[管理画面] ヒーローデータをレンダリング:', hero);
+    const nameEl = document.getElementById('hero-name');
+    if (nameEl) {
+        nameEl.value = hero.name || '';
+        console.log('[管理画面] 名前フィールドに設定:', nameEl.value);
+    } else {
+        console.error('[管理画面] hero-name要素が見つかりません！');
+    }
     document.getElementById('hero-nameKana').value = hero.nameKana || '';
     document.getElementById('hero-area').value = hero.area || '';
     document.getElementById('hero-slogan').value = hero.slogan || '';
@@ -592,6 +601,11 @@ async function saveAllContent() {
         
         if (response.ok) {
             showSuccessMessage('保存しました！すぐにサイトに反映されます。');
+            // 保存後にデータを再読み込みして表示を更新
+            console.log('[管理画面] 保存成功。データを再読み込みします...');
+            await loadContent();
+            renderAllSections();
+            console.log('[管理画面] 表示を更新しました');
         } else {
             alert('保存に失敗しました: ' + (result.error || '不明なエラー'));
         }
