@@ -106,8 +106,10 @@ function renderProfile() {
 
 // 政策
 function renderPolicies() {
+    console.log('[管理画面] 政策データをレンダリング:', contentData.policies);
     const list = document.getElementById('policies-list');
     const policies = contentData.policies || [];
+    console.log('[管理画面] 政策数:', policies.length);
     list.innerHTML = policies.map((policy, index) => `
         <div class="item-card">
             <div class="item-content">
@@ -161,8 +163,10 @@ function editPolicy(index) {
 
 // プロジェクト
 function renderProjects() {
+    console.log('[管理画面] プロジェクトデータをレンダリング:', contentData.projects);
     const list = document.getElementById('projects-list');
     const projects = contentData.projects || [];
+    console.log('[管理画面] プロジェクト数:', projects.length);
     list.innerHTML = projects.map((project, index) => `
         <div class="item-card">
             <div class="item-content">

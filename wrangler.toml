@@ -1,0 +1,9 @@
+name = "yukawa-hiroyuki"
+compatibility_date = "2026-01-12"
+pages_build_output_dir = "./dist"
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "CONTENT_KV"
+id = "2dcd4489297a4b249afe5cee68e46036"
+preview_id = "8442a571fd3f475c9b837698a602dfde"
